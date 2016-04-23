@@ -22,20 +22,40 @@ class Point():
 
 class Disk():
     
-    def __init__(self, radius=0.00,centre=Point() ):
+    def __init__(self, centre=Point(), radius=0 ):
         import re
-        result = re.findall('\d+\.\d+', str(centre))
-        print('radius',radius, type(radius))
-        print(result)
-        self.x = float(result[0])
-        self.y = float(result[1])  
+
+        self.x = centre.x
+        self.y = centre.y  
         self.r = float(radius)
+        self.area = pi*self.r*self.r
 
-    def change_radius(self, r):
+    def change_radius(self,r):
         self.r = r
+        self.area = pi*self.r*self.r
 
-    def area(self, r):
-        print(pi*r*r)
+    def intersects(self, disk):
+        if hypot((disk.x - self.x), (disk.y - self.y)) <= self.r + disk.r:
+            return True
+        else:
+            return False
+
+    def absorb(self, disk):
+        X = disk.x - self.x
+        Y = disk.y - self.y
+        R = (hypot(X, Y) + self.r + disk.r) / 2 
+        if R  > max(self.r, disk.r) :
+            k=(R - self.r)/hypot(X,Y)
+            x = k * (disk.x - self.x) + self.x
+            y = k * (disk.y - self.y) + self.y
+            r = R
+        else:
+            if disk.r == max(self.r, disk.r):
+                x = disk.x
+                y = disk.y
+                r = disk.r
+        return(Disk(r, Point(x, y)))
+            
 
     def __repr__(self):
         return 'Disk(Point({:.2f}, {:.2f}), {:.2f})'.format(self.x, self.y, self.r)      
