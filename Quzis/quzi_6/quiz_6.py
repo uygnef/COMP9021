@@ -6,7 +6,7 @@
 # - absorb(disk), that returns a new disk object that represents the smallest
 #   disk that contains both the disk provided as argument and the disk object.
 #
-# Written by *** and Eric Martin for COMP9021
+# Written by Yu Feng and Eric Martin for COMP9021
 
 
 from math import pi, hypot
@@ -22,12 +22,14 @@ class Point():
 
 class Disk():
     
-    def __init__(self, centre=Point(), radius=0 ):
+    def __init__(self, **X ):
         import re
-
-        self.x = centre.x
-        self.y = centre.y  
-        self.r = float(radius)
+        if len(X)==0:
+            X['centre'] = Point()
+            X['radius'] = 0
+        self.x = X['centre'].x
+        self.y = X['centre'].y  
+        self.r = float(X['radius'])
         self.area = pi*self.r*self.r
 
     def change_radius(self,r):
@@ -54,8 +56,7 @@ class Disk():
                 x = disk.x
                 y = disk.y
                 r = disk.r
-        return(Disk(r, Point(x, y)))
-            
+        return(Disk(centre=Point(x, y), radius=r))        
 
     def __repr__(self):
         return 'Disk(Point({:.2f}, {:.2f}), {:.2f})'.format(self.x, self.y, self.r)      
