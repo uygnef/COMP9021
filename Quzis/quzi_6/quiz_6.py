@@ -22,14 +22,11 @@ class Point():
 
 class Disk():
     
-    def __init__(self, **X ):
-        import re
-        if len(X)==0:
-            X['centre'] = Point()
-            X['radius'] = 0
-        self.x = X['centre'].x
-        self.y = X['centre'].y  
-        self.r = float(X['radius'])
+    def __init__(self, *,centre = Point(), radius = 0 ):
+
+        self.x = centre.x
+        self.y = centre.y  
+        self.r = float(radius)
         self.area = pi*self.r*self.r
 
     def change_radius(self,r):
