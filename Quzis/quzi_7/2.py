@@ -17,35 +17,22 @@ class ExtendedLinkedList(LinkedList):
         temp = before_temp.next_node
   #      print(temp.value)
 
-        
-            
-        while First.next_node:
-
+        while temp.next_node:
+            print(temp.next_node.value)
             if self.compare(First.value, temp.value):
-                
                 before_temp.next_node = temp.next_node
+           #     print('----',before_temp.next_node.value)
                 temp.next_node = First.next_node
+            #    print(before_temp.next_node.value,temp.next_node.value)
                 First.next_node = temp
 
 
                 First = temp
                 before_temp = temp
-                temp = temp.next_node       
+                temp = temp.next_node
+                
             else:
-                if temp.next_node == None:
-                    First = First.next_node
-                    before_temp = First
-                    temp = before_temp.next_node
-                else:
-                    before_temp = temp
-                    temp = temp.next_node
-
-
-
-
-                    
-          
+            #    print('else')
+                before_temp = temp
+                temp = temp.next_node
             
-
-                
-                
