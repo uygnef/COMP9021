@@ -13,7 +13,7 @@
 # -- a function that essentially implements F to operate on linked lists --, and prints out L again,
 # which should have the same head and consist of the same nodes as the original, but linked differently.
 #
-# Written by *** and Eric Martin for COMP9021
+# Written by Eric Martin for COMP9021
 
 
 import sys
