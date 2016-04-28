@@ -1,4 +1,4 @@
-# Written by Eric Martin and Yu Feng for COMP9021
+# Written by Eric Martin for COMP9021
 
 from linked_list import *
 
@@ -12,8 +12,8 @@ class ExtendedLinkedList(LinkedList):
             return
         First = self.head
         before_temp = First
-        temp = before_temp.next_node        
-            
+        temp = before_temp.next_node
+          
         while First.next_node:
 
             if self.compare(First.value, temp.value):
