@@ -13,7 +13,7 @@ class Vector():
 def cross_product(A, B):  #defin the cross product, A,B are vector 
     return A.dir_x * B.dir_y - B.dir_x * A.dir_y      
         
-def coloured_pieces(file): #transfer the xml documents to the list of points
+def available_coloured_pieces(file): #transfer the xml documents to the list of points
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(file, "html.parser")
     pieces=[]
@@ -51,7 +51,7 @@ def if_cross(a, b, c, d): #input Point()
         and (cross_product(ca, cb) * cross_product(da, db) <= 0)
     
     
-def are_vaild(pieces):
+def are_valid (pieces):
     for polygon  in pieces:
         result=product_result(polygon)  #use cross product(judge clockwise)
       #  print(result)
