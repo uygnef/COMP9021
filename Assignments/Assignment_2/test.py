@@ -123,14 +123,8 @@ def is_identical(A_colour, B_colour):
                angle(B_colour_vector_set[b-i],B_colour_vector_set[b+1-i]):
                 break
             return True
-
     return False
-                    
-
-                
-
-
-
+                           
 def are_identical_sets_of_coloured_pieces(pirece_A, pirece_B):
     if len(pirece_A) != len(pirece_B):  #the number of pirece must be same
         return False
@@ -141,6 +135,7 @@ def are_identical_sets_of_coloured_pieces(pirece_A, pirece_B):
                     continue
                 else:
                     return is_identical(pirece_A[A_colour], pirece_B[B_colour])
+                return False
     
             
 
