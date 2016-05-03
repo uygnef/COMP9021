@@ -137,10 +137,38 @@ def are_identical_sets_of_coloured_pieces(pirece_A, pirece_B):
                     return is_identical(pirece_A[A_colour], pirece_B[B_colour])
                 return False
     
-            
-
-            
+def reset_position(piece):
+    goal_x = None
+    goal_y = None
+    for i in piece:
+        if goal_x == None:
+            goal_x = i.x
+        if goal_y == None:
+            goal_y = i.y
+        goal_x = min(goal_x,i.x)
+        goal_y = min(goal_y,i.y)
         
-    
-            
-            
+    for n in piece:
+        n.x -= goal_x
+        n.y -= goal_y  
+    return piece          
+
+def turn_90(piece):
+    piece = reset_position(piece)
+    for i in piece:
+       # print('i',i.x,i.y)
+        temp = i.x
+        i.x = -i.y
+        i.y = temp
+       # print('changed',i.x,i.y,temp)
+    piece = reset_position(piece)
+    return piece
+        
+file = open('pieces_A.xml')    
+piece=available_coloured_pieces(file)
+new = turn_90(piece['red'])
+new = turn_90(new)
+new = turn_90(new)
+new = turn_90(new)
+for i in new:
+	print(i.x,i.y)            
