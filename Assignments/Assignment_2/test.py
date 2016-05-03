@@ -77,64 +77,62 @@ def are_valid (pieces):
 ##file = open ('incorrect_pieces_3.xml')
 ##coloured_pieces = available_coloured_pieces ( file )
 ##are_valid ( coloured_pieces )
-def angle(A, B): #vectorA ,B    cacult the angle to the two vectors
-    return (A.dir_x*A.dir_y + B.dir_x*B.dir_y)/(A.length*B.length)
 
-def reverse(A): #slip the piece
-    for colour in A:
-        temp = A[colour].x
-        A[colour].x = A[colour].y
-        A[colour].y = temp
-    return A    
+def reverse(colour): #slip the piece
+    for point in colour:
+        temp = point.x
+        point.x = point.y
+        point.y = temp
+   #     print('x=',point.x,'y=',point.y)
+    return colour    
 
-def vector_set(colour):         #change the color pirece into vector set
-    v_set=[]
-    i = -1
-    while i < len(colour)-1:
-        ab = Vector(colour[i], colour[i+1])
-        v_set.append(ab)
-        i += 1
-    return v_set
+def print_Point(colour):
+    for i in colour:
+        print('({},{})'.format(i.x,i.y),end=' ')
 
+        
 def is_identical(A_colour, B_colour):
     if len(A_colour) != len(B_colour): #make sure the number of point is same
         return False
-    A_colour_vector_set = vector_set(A_colour)
-    B_colour_vector_set = vector_set(B_colour)
+    A_colour = reset_position(A_colour)
+    B_colour = reset_position(B_colour)
+  #  print('A_colour')
+  #  print_Point(A_colour)
+ #   print()
+  #  print('B_colour')
 
-    for b in range(len(B_colour_vector_set)):
-        for i in range(len(A_colour_vector_set)):
-            if A_colour_vector_set[-i].length != B_colour_vector_set[b-i].length:
-                break
-     #   for i in range(len(A_colour_vector_set)-1):
-            if angle(A_colour_vector_set[-i],A_colour_vector_set[1-i]) != \
-               angle(B_colour_vector_set[b-i],B_colour_vector_set[b+1-i]):
-                break
-            return True
+    for _ in range(4):
+        for i in range(len(A_colour)):
+      #    print(A_colour[i].x,B_colour[i].x)
+          if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
+                B_colour = turn_90(B_colour)
+      #          print('')
+       #         print_Point(B_colour)
+          else:
+                return True              
 
     B_colour = reverse(B_colour)
-    B_colour_vector_set = vector_set(B_colour)
-    for b in range(len(B_colour_vector_set)):
-        for i in range(len(A_colour_vector_set)):
-            if A_colour_vector_set[-i].length != B_colour_vector_set[b-i].length:
-                break
-     #   for i in range(len(A_colour_vector_set)-1):
-            if angle(A_colour_vector_set[-i],A_colour_vector_set[1-i]) != \
-               angle(B_colour_vector_set[b-i],B_colour_vector_set[b+1-i]):
-                break
-            return True
+    for _ in range(4):
+       for i in range(len(A_colour)):
+        if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
+            B_colour = turn_90(B_colour)
+   #         print('')
+ #           print_Point(B_colour)
+        else:
+            return True 
+
     return False
                            
-def are_identical_sets_of_coloured_pieces(pirece_A, pirece_B):
-    if len(pirece_A) != len(pirece_B):  #the number of pirece must be same
+def are_identical_sets_of_coloured_pieces(piece_A, piece_B):
+    if len(piece_A) != len(piece_B):  #the number of pirece must be same
         return False
     else:
-        for A_colour in pirece_A:       #test same color of two pirece whether identical
-            for B_colour in pirece_B:
+        for A_colour in piece_A:       #test same color of two pirece whether identical
+            for B_colour in piece_B:
                 if A_colour != B_colour:
                     continue
                 else:
-                    return is_identical(pirece_A[A_colour], pirece_B[B_colour])
+                    return is_identical(piece_A[A_colour], piece_B[B_colour])
                 return False
     
 def reset_position(piece):
@@ -150,7 +148,23 @@ def reset_position(piece):
         
     for n in piece:
         n.x -= goal_x
-        n.y -= goal_y  
+        n.y -= goal_y
+
+    start_point=[]                  #let the start point be (0,min)
+    for j in range(len(piece)):
+        if piece[j].x == 0:
+            start_point.append(j)
+ #   print(start_point)
+    temp = piece[start_point[0]].y
+    result = start_point[0]
+    for x in start_point:
+   #     print('temp,y',temp,piece[x].y,x)
+        if piece[x].y < temp:
+            result = x
+ #           print(x,piece[x].y)
+    
+    piece = piece[result:] + piece[0:result]
+
     return piece          
 
 def turn_90(piece):
