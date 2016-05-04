@@ -38,7 +38,7 @@ def product_result(polygon): #get all cross_product in the polygon
         bc = Vector(polygon[i+1], polygon[i+2])
 
         r = cross_product(ab,bc)
-        #print('r=',r)
+      #  print('r=',r)
         product_result.append(r)
     return(product_result)
     
@@ -177,12 +177,76 @@ def turn_90(piece):
        # print('changed',i.x,i.y,temp)
     piece = reset_position(piece)
     return piece
+
+def area(piece):
+    area = 0
+    total_area = 0
+    for p in piece:
+        colour = piece[p]                  #colour actually means the list of
+        for i in range(-2,len(colour)-2):   #point in the same ploygon
+            ab = Vector(colour[i], colour[i+1])
+            bc = Vector(colour[i+1], colour[i+2])
+            area += 0.5*cross_product(ab,bc)
+        total_area += area
+    return abs(total_area)
+
+def collinear(A_colour, B_colour):
+    i = -2
+    j = -2
+    while i < len(A_colour)-2:
+        while j < len(B_colour)-2:
+            ab = Vector(A_colour[i], A_colour[i+1])
+            cd = Vector(B_colour[j], B_colour[j+1])
+            print(cross_product(ab, cd))
+            if cross_product(ab, cd) == 0:
+                min_ab = min(A_colour[i].x, A_colour[i+1].x)
+                max_ab = max(A_colour[i].x, A_colour[i+1].x)
+# 存疑，有可能出现错误排序#
+                if min_ab < B_colour[j].x < max_ab and min_ab < B_colour[j+1].x < max_ab:
+                    if abs(A_colour[i].x - B_colour[j].x) < abs(A_colour[i].x - B_colour[j+1].x):
+                        A_colour = A_colour[0:i] + B_colour[j] + B_colour[j+1] + A_colour[i:]
+                        i = i + 2
+                    else:
+                        A_colour = A_colour[0:i] + [B_colour[j]] + [B_colour[j+1]] + A_colour[i:]
+                        i = i + 2
+                elif min_ab < B_colour[j].x < max_ab:                        
+                    A_colour = A_colour[0:i] + [B_colour[j]]  + A_colour[i:]
+                    i = i + 1
+
+                elif min_ab < B_colour[j+1].x < max_ab:
+                    A_colour = A_colour[0:i] + [B_colour[j+1]] + A_colour[i:]
+                    i = i + 1
+                j = j+1
+            i = i+1
+
+##                print(A_colour[i].x,B_colour[j].x,A_colour[i+1].x)
+##                print(A_colour[i+1].x,B_colour[j].x,A_colour[i+1].x)
+##                if min(A_colour[i].x, A_colour[i+1].x) < B_colour[j].x < \
+##                   max(A_colour[i].x, A_colour[i+1].x):
+##                    A_colour = A[0:i] + B[j] + A[i:]
+##                if min(A_colour[i+2].x, A_colour[i+1].x) < B_colour[j].x < \
+##                   min(A_colour[i+1].x, A_colour[i+2].x):
+##                    A_colour = A[0:i+1] + B[j+1] + A[i+1:]
+        return A_colour
+
+
+##def union(A_colour, B_colour):
+##    for i in range(-1,len(A_colour)-1):
+##        for j in range(-1,len(B_colour)-1):
+##            ab = Vector(A_colour[i], A_colour[i+1])
+##            cd = Vector(B_colour[j], B_colour[j+1])
+##            if  collinear(ab,cd):
+##                return ***
+##        return A_colour[i]
+            
+            
+            
+    
+def is_solution(tangram, shape):
+    if area(tangram) != area(shape):
+        return False
+    
         
-file = open('pieces_A.xml')    
+        
+file = open('tangram_A_1_a.xml')    
 piece=available_coloured_pieces(file)
-new = turn_90(piece['red'])
-new = turn_90(new)
-new = turn_90(new)
-new = turn_90(new)
-for i in new:
-	print(i.x,i.y)            
