@@ -191,43 +191,53 @@ def area(piece):
     return abs(total_area)
 
 def collinear(A_colour, B_colour):
-    i = -2
-    j = -2
-    while i < len(A_colour)-2:
-        while j < len(B_colour)-2:
-            ab = Vector(A_colour[i], A_colour[i+1])
-            cd = Vector(B_colour[j], B_colour[j+1])
-            print(cross_product(ab, cd))
-            if cross_product(ab, cd) == 0:
+    new_A = []
+    for i in range(-1, len(A_colour)-1):
+        new_A.append(A_colour[i])
+        for j in range(-1, len(B_colour)-1):
+            
+            if cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], B_colour[j+1])) != 0:
+                continue
+            else:
+              #  print('有共线')
+              #  print_Point([A_colour[i], B_colour[j]])
                 min_ab = min(A_colour[i].x, A_colour[i+1].x)
                 max_ab = max(A_colour[i].x, A_colour[i+1].x)
-# 存疑，有可能出现错误排序#
                 if min_ab < B_colour[j].x < max_ab and min_ab < B_colour[j+1].x < max_ab:
+               #     print('在范围内')
                     if abs(A_colour[i].x - B_colour[j].x) < abs(A_colour[i].x - B_colour[j+1].x):
-                        A_colour = A_colour[0:i] + B_colour[j] + B_colour[j+1] + A_colour[i:]
-                        i = i + 2
+                    #    print('j>j+1')
+                        new_A.append(B_colour[j])
+                        new_A.append(B_colour[j+1])
+                        
                     else:
-                        A_colour = A_colour[0:i] + [B_colour[j]] + [B_colour[j+1]] + A_colour[i:]
-                        i = i + 2
-                elif min_ab < B_colour[j].x < max_ab:                        
-                    A_colour = A_colour[0:i] + [B_colour[j]]  + A_colour[i:]
-                    i = i + 1
+                    #    print('j<j+1')
+                        new_A.append(B_colour[j+1])
+                        new_A.append(B_colour[j])
+
+                elif min_ab < B_colour[j].x < max_ab:
+                 #   print('only j')
+                    new_A.append(B_colour[j])
 
                 elif min_ab < B_colour[j+1].x < max_ab:
-                    A_colour = A_colour[0:i] + [B_colour[j+1]] + A_colour[i:]
-                    i = i + 1
-                j = j+1
-            i = i+1
+                 #   print('only j+1')
+                    new_A.append(B_colour[j+1])
+    return new_A
+            
+def union(A_colour, B_colour):
+    import copy
+    if cross_product(Vector(A_colour[0], A_colour[1]), Vector(A_colour[1], A_colour[2])) < 0:
+        A_colour = A_colour[::-1]
+    if cross_product(Vector(B_colour[0], B_colour[1]), Vector(B_colour[1], B_colour[2])) < 0:
+        B_colour = B_colour[::-1]
+        
+    A = copy.deepcopy(collinear(A_colour, B_colour))
+    B = copy.deepcopy(collinear(B_colour, A_colour))
+    
+    return A, B
+    
+    
 
-##                print(A_colour[i].x,B_colour[j].x,A_colour[i+1].x)
-##                print(A_colour[i+1].x,B_colour[j].x,A_colour[i+1].x)
-##                if min(A_colour[i].x, A_colour[i+1].x) < B_colour[j].x < \
-##                   max(A_colour[i].x, A_colour[i+1].x):
-##                    A_colour = A[0:i] + B[j] + A[i:]
-##                if min(A_colour[i+2].x, A_colour[i+1].x) < B_colour[j].x < \
-##                   min(A_colour[i+1].x, A_colour[i+2].x):
-##                    A_colour = A[0:i+1] + B[j+1] + A[i+1:]
-        return A_colour
 
 
 ##def union(A_colour, B_colour):
