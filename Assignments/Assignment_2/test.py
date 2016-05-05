@@ -38,7 +38,7 @@ def product_result(polygon): #get all cross_product in the polygon
         bc = Vector(polygon[i+1], polygon[i+2])
 
         r = cross_product(ab,bc)
-        #print('r=',r)
+      #  print('r=',r)
         product_result.append(r)
     return(product_result)
     
@@ -77,64 +77,62 @@ def are_valid (pieces):
 ##file = open ('incorrect_pieces_3.xml')
 ##coloured_pieces = available_coloured_pieces ( file )
 ##are_valid ( coloured_pieces )
-def angle(A, B): #vectorA ,B    cacult the angle to the two vectors
-    return (A.dir_x*A.dir_y + B.dir_x*B.dir_y)/(A.length*B.length)
 
-def reverse(A): #slip the piece
-    for colour in A:
-        temp = A[colour].x
-        A[colour].x = A[colour].y
-        A[colour].y = temp
-    return A    
+def reverse(colour): #slip the piece
+    for point in colour:
+        temp = point.x
+        point.x = point.y
+        point.y = temp
+   #     print('x=',point.x,'y=',point.y)
+    return colour    
 
-def vector_set(colour):         #change the color pirece into vector set
-    v_set=[]
-    i = -1
-    while i < len(colour)-1:
-        ab = Vector(colour[i], colour[i+1])
-        v_set.append(ab)
-        i += 1
-    return v_set
+def print_Point(colour):
+    for i in colour:
+        print('({},{})'.format(i.x,i.y),end=' ')
 
+        
 def is_identical(A_colour, B_colour):
     if len(A_colour) != len(B_colour): #make sure the number of point is same
         return False
-    A_colour_vector_set = vector_set(A_colour)
-    B_colour_vector_set = vector_set(B_colour)
+    A_colour = reset_position(A_colour)
+    B_colour = reset_position(B_colour)
+  #  print('A_colour')
+  #  print_Point(A_colour)
+ #   print()
+  #  print('B_colour')
 
-    for b in range(len(B_colour_vector_set)):
-        for i in range(len(A_colour_vector_set)):
-            if A_colour_vector_set[-i].length != B_colour_vector_set[b-i].length:
-                break
-     #   for i in range(len(A_colour_vector_set)-1):
-            if angle(A_colour_vector_set[-i],A_colour_vector_set[1-i]) != \
-               angle(B_colour_vector_set[b-i],B_colour_vector_set[b+1-i]):
-                break
-            return True
+    for _ in range(4):
+        for i in range(len(A_colour)):
+      #    print(A_colour[i].x,B_colour[i].x)
+          if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
+                B_colour = turn_90(B_colour)
+      #          print('')
+       #         print_Point(B_colour)
+          else:
+                return True              
 
     B_colour = reverse(B_colour)
-    B_colour_vector_set = vector_set(B_colour)
-    for b in range(len(B_colour_vector_set)):
-        for i in range(len(A_colour_vector_set)):
-            if A_colour_vector_set[-i].length != B_colour_vector_set[b-i].length:
-                break
-     #   for i in range(len(A_colour_vector_set)-1):
-            if angle(A_colour_vector_set[-i],A_colour_vector_set[1-i]) != \
-               angle(B_colour_vector_set[b-i],B_colour_vector_set[b+1-i]):
-                break
-            return True
+    for _ in range(4):
+       for i in range(len(A_colour)):
+        if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
+            B_colour = turn_90(B_colour)
+   #         print('')
+ #           print_Point(B_colour)
+        else:
+            return True 
+
     return False
                            
-def are_identical_sets_of_coloured_pieces(pirece_A, pirece_B):
-    if len(pirece_A) != len(pirece_B):  #the number of pirece must be same
+def are_identical_sets_of_coloured_pieces(piece_A, piece_B):
+    if len(piece_A) != len(piece_B):  #the number of pirece must be same
         return False
     else:
-        for A_colour in pirece_A:       #test same color of two pirece whether identical
-            for B_colour in pirece_B:
+        for A_colour in piece_A:       #test same color of two pirece whether identical
+            for B_colour in piece_B:
                 if A_colour != B_colour:
                     continue
                 else:
-                    return is_identical(pirece_A[A_colour], pirece_B[B_colour])
+                    return is_identical(piece_A[A_colour], piece_B[B_colour])
                 return False
     
 def reset_position(piece):
@@ -150,7 +148,23 @@ def reset_position(piece):
         
     for n in piece:
         n.x -= goal_x
-        n.y -= goal_y  
+        n.y -= goal_y
+
+    start_point=[]                  #let the start point be (0,min)
+    for j in range(len(piece)):
+        if piece[j].x == 0:
+            start_point.append(j)
+ #   print(start_point)
+    temp = piece[start_point[0]].y
+    result = start_point[0]
+    for x in start_point:
+   #     print('temp,y',temp,piece[x].y,x)
+        if piece[x].y < temp:
+            result = x
+ #           print(x,piece[x].y)
+    
+    piece = piece[result:] + piece[0:result]
+
     return piece          
 
 def turn_90(piece):
@@ -163,12 +177,172 @@ def turn_90(piece):
        # print('changed',i.x,i.y,temp)
     piece = reset_position(piece)
     return piece
+
+def area(piece):
+    area = 0
+    total_area = 0
+    for p in piece:
+        colour = piece[p]                  #colour actually means the list of
+        for i in range(-2,len(colour)-2):   #point in the same ploygon
+            ab = Vector(colour[i], colour[i+1])
+            bc = Vector(colour[i+1], colour[i+2])
+            area += 0.5*cross_product(ab,bc)
+        total_area += area
+    return abs(total_area)           
+            
+            
+    
+def is_solution(tangram, shape):
+    if area(tangram) != area(shape):
+        return False
+    temp = []
+    if len(tangram) == 1:
+        return are_identical_sets_of_coloured_pieces(tangram, shape)
+
+    for i in tangram:
+        temp.append(i)
+
+    for i in range(len(temp)-1):
+        for j in range(len(temp)-1):
+            C = union(tangram[temp[i]], tangram[temp[j]])
+    print_Point(C)
+     
+    return are_identical_sets_of_coloured_pieces(C, shape)
+########
+##    for i in shape:
+##        shape_area = area(shape[i])
+##    for i in tangram:
+##        tangram_area = area(tangram[i])
+##########
+
+def is_in_shape(piece, shape):
+    for i in shape:
+        shape_point = shape[i]
+    true_list=[]
+    for q in piece:
+        true_list.append(point_in_shape(q,shape_point))
+
+    if False in true_list:
+        return False
+    print(true_list)
+    return True
+
+def point_in_shape(q,shape_point):    
+   # for q in piece:
+    flag = False
+  #  print(q.x,'---',q.y)
+    for p in range(-1, len(shape_point)-1):
+        p1 = shape_point[p]
+        p2 = shape_point[p+1]
+    #    print('p1,p2',p1.x,p1.y,'-',p2.x,p2.y)
         
-file = open('pieces_A.xml')    
+        if q.x == p1.x and q.y == p1.y:
+        #    print('点重合')
+            return True
+
+        if p1.y == p2.y:
+            if q.y == p1.y:
+                if min(p1.x, p2.x) <= q.x <= max(p1.x, p2.x):
+           #         print('点再线上')
+                    return True
+                else:
+                    continue
+            
+        if min(p1.y, p2.y) <= q.y < max(p1.y, p2.y):
+            x = p1.y + (q.y - p1.y) * (p2.x - p1.x) / (p2.y - p1.y)
+       #     print(x,q.x)
+            if x == q.x:
+        #        print('点又重合')
+                return True
+            if x > q.x:
+         #       print('射线相交')
+                flag = not flag
+
+            # when q1.y = q2.y ignore
+    if flag == False:
+        print(q.x,q.y)
+    return flag
+
+                        
+                    
+                
+        
+    
+
+##def collinear(A_colour, B_colour):
+##    new_A = []
+##    for i in range(-1, len(A_colour)-1):
+##        new_A.append(A_colour[i])
+##        for j in range(-1, len(B_colour)-1):
+##            #two lines ai-ai+1, bi-bi+1 are collinear
+##            if cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], B_colour[j+1])) != 0: 
+##                continue
+##            else:
+##              #  print('有共线')
+##              #  print_Point([A_colour[i], B_colour[j]])
+##                min_a = min(A_colour[i].x, A_colour[i+1].x)
+##                max_a = max(A_colour[i].x, A_colour[i+1].x)
+##                if min_ab < B_colour[j].x < max_ab and min_ab < B_colour[j+1].x < max_ab:
+##               #     print('在范围内')
+##                    if abs(A_colour[i].x - B_colour[j].x) < abs(A_colour[i].x - B_colour[j+1].x):
+##                    #    print('j>j+1')
+##                        new_A.append(B_colour[j])
+##                        new_A.append(B_colour[j+1])
+##                        
+##                    else:
+##                    #    print('j<j+1')
+##                        new_A.append(B_colour[j+1])
+##                        new_A.append(B_colour[j])
+##
+##                elif min_ab < B_colour[j].x < max_ab:
+##                 #   print('only j')
+##                    new_A.append(B_colour[j])
+##
+##                elif min_ab < B_colour[j+1].x < max_ab:
+##                 #   print('only j+1')
+##                    new_A.append(B_colour[j+1])
+##    return new_A
+##
+##
+##def union(A_colour, B_colour):
+##    import copy
+##    if cross_product(Vector(A_colour[0], A_colour[1]), Vector(A_colour[1], A_colour[2])) < 0:
+##        A_colour = A_colour[::-1]
+##    if cross_product(Vector(B_colour[0], B_colour[1]), Vector(B_colour[1], B_colour[2])) < 0:
+##        B_colour = B_colour[::-1]        
+##    A = copy.deepcopy(collinear(A_colour, B_colour))
+##    B = copy.deepcopy(collinear(B_colour, A_colour))
+##
+##    result = []
+##    for i in range(-1, len(A)-1):
+##        if A[i] not in B:
+##            result.append(A[i])
+##        elif A[i+1] not in B:
+##            result.append(A[i])
+##        elif A[i+1] in B:
+##            for j in range(len(B)):
+##                if A[i+1] == B[j]:
+##                    if B[j+1] not in A:
+##                        result.append(B[j])
+##                    
+   
+##                
+##                if B[j+1] == A[i+1]:
+##                    B = B[j+1:] + B[:j+1]
+##                    A = A[:i] + B + A[i+1:]
+##                    return A
+##    return A_colour
+##
+####def union(A_colour, B_colour):
+####    for i in range(-1,len(A_colour)-1):
+####        for j in range(-1,len(B_colour)-1):
+####            ab = Vector(A_colour[i], A_colour[i+1])
+####            cd = Vector(B_colour[j], B_colour[j+1])
+####            if  collinear(ab,cd):
+####                return ***
+####        return A_colour[i]
+
+        
+        
+file = open('tangram_A_1_a.xml')    
 piece=available_coloured_pieces(file)
-new = turn_90(piece['red'])
-new = turn_90(new)
-new = turn_90(new)
-new = turn_90(new)
-for i in new:
-	print(i.x,i.y)            
