@@ -255,16 +255,17 @@ def point_in_shape(q,shape_point):
             
         if min(p1.y, p2.y) <= q.y < max(p1.y, p2.y):
  
-            print('q=',q.x,q.y)
-            print('P=',p1.x,p1.y,' ',p2.x,p2.y)
-            judge = (q.y - p1.y) * (p2.x - p1.x) - (q.x -p1.x)*(p2.y - p1.y)
-            print((q.y - p1.y) * (p2.x - p1.x) - (q.x -p1.x)*(p2.y - p1.y))
+        #    print('q=',q.x,q.y)
+       #     print('P=',p1.x,p1.y,' ',p2.x,p2.y)
+        #    print('hou=',(p2.x - p1.x) * (p2.y - p1.y))
+            judge = (q.y - p1.y) * (q.x -p1.x) - (p2.x - p1.x) * (p2.y - p1.y)
+        #    print(judge)
 
             if judge == 0:
         #        print('点又重合')
                 return True
             if judge > 0:
-                print('射线相交')
+         #       print('射线相交')
                 flag = not flag
             # when q1.y = q2.y ignore
     if flag == False:

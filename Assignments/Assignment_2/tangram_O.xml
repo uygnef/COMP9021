@@ -1,5 +1,5 @@
  <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 150 190   L 200 240   L 250 0           z" fill="dodgerblue"/>  
+    <path d="M 150 190   L 200 240   L 250 190           z" fill="dodgerblue"/>  
     <path d="M 225 265  L 250 290   L 250 240           z" fill="gold"/>
     <path d="M 250 290  L 300 240   L 250 240           z" fill="fuchsia"/>
     <path d="M 225 215  L 275 215   L 250 190           z" fill="olive"/>
