@@ -254,17 +254,13 @@ def point_in_shape(q,shape_point):
                     continue
             
         if min(p1.y, p2.y) <= q.y < max(p1.y, p2.y):
- 
-            print('q=',q.x,q.y)
-            print('P=',p1.x,p1.y,' ',p2.x,p2.y)
-            judge = (q.y - p1.y) * (p2.x - p1.x) - (q.x -p1.x)*(p2.y - p1.y)
-            print((q.y - p1.y) * (p2.x - p1.x) - (q.x -p1.x)*(p2.y - p1.y))
-
-            if judge == 0:
+            x = p1.y + (q.y - p1.y) * (p2.x - p1.x) / (p2.y - p1.y)
+       #     print(x,q.x)
+            if x == q.x:
         #        print('点又重合')
                 return True
-            if judge > 0:
-                print('射线相交')
+            if x > q.x:
+         #       print('射线相交')
                 flag = not flag
             # when q1.y = q2.y ignore
     if flag == False:
