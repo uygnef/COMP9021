@@ -28,6 +28,7 @@ def available_coloured_pieces(file): #transfer the xml documents to the list of 
             i = [int(i) for i in i if i ]
             point.append(Point(i))
         pieces[colour] = point
+   # print(pieces)
     return pieces
 
 def product_result(polygon): #get all cross_product in the polygon
@@ -37,6 +38,7 @@ def product_result(polygon): #get all cross_product in the polygon
         bc = Vector(polygon[i+1], polygon[i+2])
 
         r = cross_product(ab,bc)
+      #  print('r=',r)
         product_result.append(r)
     return(product_result)
     
@@ -72,6 +74,9 @@ def are_valid (pieces):
                             return False       
     return True
             
+##file = open ('incorrect_pieces_3.xml')
+##coloured_pieces = available_coloured_pieces ( file )
+##are_valid ( coloured_pieces )
 
 def reverse(colour): #slip the piece
     for point in colour:
@@ -80,6 +85,7 @@ def reverse(colour): #slip the piece
         point.y = temp
 
     colour = colour[::-1]
+   #     print('x=',point.x,'y=',point.y)
     return colour    
 
 def print_Point(colour):
@@ -93,11 +99,18 @@ def is_identical(A_colour, B_colour):
         return False
     A_colour = reset_position(A_colour)
     B_colour = reset_position(B_colour)
+   # print('A_colour')
+   # print_Point(A_colour)
+  #  print()
+  #  print('B_colour')
 
     for _ in range(4):
         for i in range(len(A_colour)):
+     #     print(A_colour[i].x,B_colour[i].x)
           if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
                 B_colour = turn_90(B_colour)
+            #    print('')
+            #    print_Point(B_colour)
           else:
                 return True              
 
@@ -106,6 +119,8 @@ def is_identical(A_colour, B_colour):
        for i in range(len(A_colour)):
         if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
             B_colour = turn_90(B_colour)
+        #    print('')
+       #     print_Point(B_colour)
         else:
             return True 
 
@@ -143,13 +158,14 @@ def reset_position(piece):
     for j in range(len(piece)):
         if piece[j].x == 0:
             start_point.append(j)
-            
+ #   print(start_point)
     temp = piece[start_point[0]].y
     result = start_point[0]
     for x in start_point:
+   #     print('temp,y',temp,piece[x].y,x)
         if piece[x].y < temp:
             result = x
-
+ #           print(x,piece[x].y)
     
     piece = piece[result:] + piece[0:result]
 
@@ -158,9 +174,11 @@ def reset_position(piece):
 def turn_90(piece):
     piece = reset_position(piece)
     for i in piece:
+       # print('i',i.x,i.y)
         temp = i.x
         i.x = -i.y
         i.y = temp
+       # print('changed',i.x,i.y,temp)
     piece = reset_position(piece)
     return piece
 
@@ -170,30 +188,40 @@ def area(piece):
     
     for p in piece:
         colour = piece[p]
+      #  print_Point(colour)  #colour actually means the list of
+      #  print()
         area = 0
         for i in range(-2,len(colour)-2):   #point in the same ploygon
+
             area += 0.5*cross_product(colour[i], colour[i+1])
+           # print(cross_product(colour[i], colour[i+1]))
+       # print(p,area)
         total_area += abs(area)
+      #  print('total=',total_area)
     return abs(total_area)           
                      
   
 def is_solution(tangram, shape):
-    if area(tangram) != area(shape):   #total area is equal
+    if area(tangram) != area(shape):
+      #  print(area(tangram),area(shape))
+##        print('area wrong')
         return False
 
-    for i in tangram:                  #judge each of two pieces whether overliped or not
+    for i in tangram:
         for j in tangram:
             if i != j:
                 unions = union(tangram[i],tangram[j])
                 if unions == False:
+##                    print('point in piece')
                     return False
                 else:
                     if unions == 'not union':
                         continue
 
 
-    for k in tangram:                # determine if every points is in the shape 
+    for k in tangram: 
         if not is_in_shape(tangram[k],shape):
+##            print('point not in shape')
             return False   
     return True
 
@@ -208,18 +236,23 @@ def is_in_shape(piece, shape):
         return False
     return True
 
-def point_in_shape(q,shape_point):   #judge the single point if in the piece 
+def point_in_shape(q,shape_point):    
+   # for q in piece:
     flag = False
+  #  print(q.x,'---',q.y)
     for p in range(len(shape_point)):
         p1 = shape_point[p-1]
         p2 = shape_point[p]
+    #    print('p1,p2',p1.x,p1.y,'-',p2.x,p2.y)
         
         if q.x == p1.x and q.y == p1.y:
+        #    print('点重合')
             return True
 
         if cross_product(Vector(p1,q),Vector(q,p2)) == 0:
             if min(p1.y, p2.y) <= q.y <= max(p1.y, p2.y):
                 if min(p1.x, p2.x) <= q.x <= max(p1.x, p2.x):
+           #         print('点再线上')
                     return True
                 else:
                     continue
@@ -235,13 +268,38 @@ def point_in_shape(q,shape_point):   #judge the single point if in the piece
                     if q.y == p1.y:
                         if q.x < p1.x:
                             flag = not flag
-                    else:               #q0 is the x坐标 point on the line when q0.y = qy                                                                            
+                    else:
+                        
+
                         q0 = (p1.x - p2.x) * (q.y - p1.y) / (p1.y - p2.y) + p1.x
                         if q0 > q.x:
                             flag = not flag
 
                         if q0 == q.x:
                             return True
+                
+
+
+                        
+##         
+##                        print('q=',q.x,q.y)
+##                        print('P=',p1.x,p1.y,' ',p2.x,p2.y)
+##                        print('qian=',(p2.x - p1.x) * (p2.y - p1.y))
+##                        print('({}-{})*({}-{})={}'.format(q.y,p1.y,q.x,p1.x,(q.y - p1.y) * (q.x -p1.x)))
+##                        print('hou=',(p2.x - p1.x) * (p2.y - p1.y))
+##                        print('({}-{})*({}-{})={}'.format(p2.x,p1.x,p2.y,p1.y,(p2.x - p1.x) * (p2.y - p1.y)))
+##                        
+##                        print(judge)
+
+##                    if judge == 0:
+##                        print('点又重合')
+##                        return True
+##                    if judge > 0:
+##                        print('射线相交')
+##                        flag = not flag
+                # when q1.y = q2.y ignore
+##    if flag == False:
+##        print('错误点',q.x,q.y)
     return flag                  
     
 
@@ -255,26 +313,32 @@ def collinear(A_colour, B_colour):
             if cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], B_colour[j+1])) != 0 \
                or cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], A_colour[i])) != 0: 
                 continue
-            else:             
+            else:
+            #    print('有共线')
+             #   print_Point([A_colour[i], B_colour[j]])
+             
                 min_a = min(A_colour[i].x, A_colour[i+1].x)
                 max_a = max(A_colour[i].x, A_colour[i+1].x)
                 if min_a < B_colour[j].x < max_a and min_a < B_colour[j+1].x < max_a:
-               #     is the the line ab print('在范围内')
+               #     print('在范围内')
                     if abs(A_colour[i].x - B_colour[j].x) < abs(A_colour[i].x - B_colour[j+1].x):
-
+                  #      print('j>j+1')
                         new_A.append(B_colour[j])
                         new_A.append(B_colour[j+1])
                         
                     else:
-
+                    #    print('j<j+1')
                         new_A.append(B_colour[j+1])
                         new_A.append(B_colour[j])
 
                 elif min_a < B_colour[j].x < max_a:
-
+                  # print('only j')
                     new_A.append(B_colour[j])
 
                 elif min_a < B_colour[j+1].x < max_a:
+                  #  print('j=',j)
+                 #   print('---',B_colour[j+1].x , min_a, max_a)
+                #    print('only j+1')
                     new_A.append(B_colour[j+1])
     return new_A 
 ##
@@ -288,6 +352,21 @@ def union(A_colour, B_colour):
         B_colour = B_colour[::-1]        
     A = copy.deepcopy(collinear(A_colour, B_colour))
     B = copy.deepcopy(collinear(B_colour, A_colour))
+##    print_Point(A)
+##    print()
+##    print_Point(B)
+##    print()
+##    
+##    for i in A:
+##       if point_in_shape(i, B):
+##            print(i.x,i.y)
+##            print(1)
+##            return False
+##    for j in B:
+##        if point_in_shape(j, A):
+##            print(2)
+##            return False
+##
 
     count = 0
     for i in A:
@@ -298,8 +377,13 @@ def union(A_colour, B_colour):
         return 'not union'
 
     if count >=3:
+##        print(4)
         return False
 
+##    print_Point(A)
+##    print()
+##    print_Point(B)
+##    print()
 
     a = None
 
@@ -309,7 +393,9 @@ def union(A_colour, B_colour):
         if a == None:
             for j in B:
                 if A[i].x == j.x and A[i].y == j.y:
+  #                  print(A[i].x , A[i].y)
                     a = i
+  #                  print('a=',a)
                     break
             
     b = None
@@ -320,22 +406,38 @@ def union(A_colour, B_colour):
         if b == None:
             for j in B:
                 if A[i].x == j.x and A[i].y == j.y:
+ #                   print('b 可能的值',i,'x,y=',A[i].x,A[i].y,'  ',)
                     if  i != a:
                         b = i
                         if b != a + 1:
                             a = len(A) - 1
                             b = 0
+ #                       print('b=',b)
+ #                       print('a=',a)
                 else:
                     continue
                 break
 
     i = 0
     j = 0
+ #   print('BBB=',len(B))
     for j in range(0,len(B)):
-        if B[j].x == A[a].x and B[j].y == A[a].y:         
+ #       print('j===',j)
+        if B[j].x == A[a].x and B[j].y == A[a].y:
+         
             c = j
             break
         
     if B[c-1].x != A[b].x or B[c-1].y != A[b].y:
+ #       print(c,c-1)
+ #       print(B[c-1].x, B[c-1].y,'  ',A[b].x,A[b].y)
+ #       print(3)
         return False
+
     return True
+
+file = open ('shape_D.xml')
+shape = available_coloured_pieces ( file )
+file = open ('tangram_D_a.xml')
+tangram = available_coloured_pieces ( file )
+is_solution ( tangram , shape )
