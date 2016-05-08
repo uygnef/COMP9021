@@ -83,15 +83,12 @@ def reverse(colour): #slip the piece
         temp = point.x
         point.x = point.y
         point.y = temp
-
-    colour = colour[::-1]
    #     print('x=',point.x,'y=',point.y)
     return colour    
 
 def print_Point(colour):
     for i in colour:
         print('({},{})'.format(i.x,i.y),end=' ')
-    print()
 
         
 def is_identical(A_colour, B_colour):
@@ -99,18 +96,18 @@ def is_identical(A_colour, B_colour):
         return False
     A_colour = reset_position(A_colour)
     B_colour = reset_position(B_colour)
-   # print('A_colour')
-   # print_Point(A_colour)
-  #  print()
+  #  print('A_colour')
+  #  print_Point(A_colour)
+ #   print()
   #  print('B_colour')
 
     for _ in range(4):
         for i in range(len(A_colour)):
-     #     print(A_colour[i].x,B_colour[i].x)
+      #    print(A_colour[i].x,B_colour[i].x)
           if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
                 B_colour = turn_90(B_colour)
-            #    print('')
-            #    print_Point(B_colour)
+      #          print('')
+       #         print_Point(B_colour)
           else:
                 return True              
 
@@ -119,8 +116,8 @@ def is_identical(A_colour, B_colour):
        for i in range(len(A_colour)):
         if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
             B_colour = turn_90(B_colour)
-        #    print('')
-       #     print_Point(B_colour)
+   #         print('')
+ #           print_Point(B_colour)
         else:
             return True 
 
@@ -135,9 +132,8 @@ def are_identical_sets_of_coloured_pieces(piece_A, piece_B):
                 if A_colour != B_colour:
                     continue
                 else:
-                    if not is_identical(piece_A[A_colour], piece_B[B_colour]):
-                        return False
-    return True
+                    return is_identical(piece_A[A_colour], piece_B[B_colour])
+                return False
     
 def reset_position(piece):
     goal_x = None
@@ -204,24 +200,24 @@ def area(piece):
 def is_solution(tangram, shape):
     if area(tangram) != area(shape):
       #  print(area(tangram),area(shape))
-##        print('area wrong')
+        print('area wrong')
         return False
 
     for i in tangram:
         for j in tangram:
             if i != j:
-                unions = union(tangram[i],tangram[j])
-                if unions == False:
-##                    print('point in piece')
-                    return False
-                else:
-                    if unions == 'not union':
-                        continue
-
+                if collinear(tangram[i],tangram[j]) != False:
+                    unions = union(tangram[i],tangram[j])
+                    if unions == False:
+                        print('point in piece')
+                        return False
+                    else:
+                        if area(unions) != area(tangram[i]) + area(tangram[j]):
+                            return False
 
     for k in tangram: 
         if not is_in_shape(tangram[k],shape):
-##            print('point not in shape')
+            print('point not in shape')
             return False   
     return True
 
@@ -259,47 +255,29 @@ def point_in_shape(q,shape_point):
             
         if min(p1.y, p2.y) <= q.y < max(p1.y, p2.y):
 
-            if p1.x == p2.x:
-                if q.x <= p1.x:
-                    flag = not flag
-
+            if q.y == p1.y:
+                judge = (q.y - p2.y) * (q.x -p2.x) - (p2.x - p1.x) * (p2.y - p1.y)
             else:
-                if q.x <= max(p1.x, p2.x):
-                    if q.y == p1.y:
-                        if q.x < p1.x:
-                            flag = not flag
-                    else:
-                        
-
-                        q0 = (p1.x - p2.x) * (q.y - p1.y) / (p1.y - p2.y) + p1.x
-                        if q0 > q.x:
-                            flag = not flag
-
-                        if q0 == q.x:
-                            return True
+                judge = (q.y - p1.y) * (q.x -p1.x) - (p2.x - p1.x) * (p2.y - p1.y)
+ 
+                print('q=',q.x,q.y)
+                print('P=',p1.x,p1.y,' ',p2.x,p2.y)
+                print('qian=',(p2.x - p1.x) * (p2.y - p1.y))
+                print('({}-{})*({}-{})={}'.format(q.y,p1.y,q.x,p1.x,(q.y - p1.y) * (q.x -p1.x)))
+                print('hou=',(p2.x - p1.x) * (p2.y - p1.y))
+                print('({}-{})*({}-{})={}'.format(p2.x,p1.x,p2.y,p1.y,(p2.x - p1.x) * (p2.y - p1.y)))
                 
+                print(judge)
 
-
-                        
-##         
-##                        print('q=',q.x,q.y)
-##                        print('P=',p1.x,p1.y,' ',p2.x,p2.y)
-##                        print('qian=',(p2.x - p1.x) * (p2.y - p1.y))
-##                        print('({}-{})*({}-{})={}'.format(q.y,p1.y,q.x,p1.x,(q.y - p1.y) * (q.x -p1.x)))
-##                        print('hou=',(p2.x - p1.x) * (p2.y - p1.y))
-##                        print('({}-{})*({}-{})={}'.format(p2.x,p1.x,p2.y,p1.y,(p2.x - p1.x) * (p2.y - p1.y)))
-##                        
-##                        print(judge)
-
-##                    if judge == 0:
-##                        print('点又重合')
-##                        return True
-##                    if judge > 0:
-##                        print('射线相交')
-##                        flag = not flag
-                # when q1.y = q2.y ignore
-##    if flag == False:
-##        print('错误点',q.x,q.y)
+            if judge == 0:
+              #  print('点又重合')
+                return True
+            if judge > 0:
+              #  print('射线相交')
+                flag = not flag
+            # when q1.y = q2.y ignore
+    if flag == False:
+        print('错误点',q.x,q.y)
     return flag                  
     
 
@@ -308,21 +286,21 @@ def collinear(A_colour, B_colour):
     for i in range(-1, len(A_colour)-1):
         new_A.append(A_colour[i])
         for j in range(-2, len(B_colour)-2):
+            if cross_product(Vector(B_colour[j], B_colour[j+1]), Vector(B_colour[j+1], B_colour[j+2])) * cross_product(Vector(B_colour[j], A_colour[i]), Vector(B_colour[j], A_colour[i+1])) < 0:
+               return False
             
             #two lines ai-ai+1, bi-bi+1 are collinear
-            if cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], B_colour[j+1])) != 0 \
-               or cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], A_colour[i])) != 0: 
+            if cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], B_colour[j+1])) != 0: 
                 continue
             else:
-            #    print('有共线')
-             #   print_Point([A_colour[i], B_colour[j]])
-             
+              #  print('有共线')
+              #  print_Point([A_colour[i], B_colour[j]])
                 min_a = min(A_colour[i].x, A_colour[i+1].x)
                 max_a = max(A_colour[i].x, A_colour[i+1].x)
                 if min_a < B_colour[j].x < max_a and min_a < B_colour[j+1].x < max_a:
                #     print('在范围内')
                     if abs(A_colour[i].x - B_colour[j].x) < abs(A_colour[i].x - B_colour[j+1].x):
-                  #      print('j>j+1')
+                    #    print('j>j+1')
                         new_A.append(B_colour[j])
                         new_A.append(B_colour[j+1])
                         
@@ -332,13 +310,11 @@ def collinear(A_colour, B_colour):
                         new_A.append(B_colour[j])
 
                 elif min_a < B_colour[j].x < max_a:
-                  # print('only j')
+                 #   print('only j')
                     new_A.append(B_colour[j])
 
                 elif min_a < B_colour[j+1].x < max_a:
-                  #  print('j=',j)
-                 #   print('---',B_colour[j+1].x , min_a, max_a)
-                #    print('only j+1')
+                 #   print('only j+1')
                     new_A.append(B_colour[j+1])
     return new_A 
 ##
@@ -352,92 +328,45 @@ def union(A_colour, B_colour):
         B_colour = B_colour[::-1]        
     A = copy.deepcopy(collinear(A_colour, B_colour))
     B = copy.deepcopy(collinear(B_colour, A_colour))
-##    print_Point(A)
-##    print()
-##    print_Point(B)
-##    print()
-##    
-##    for i in A:
-##       if point_in_shape(i, B):
-##            print(i.x,i.y)
-##            print(1)
-##            return False
-##    for j in B:
-##        if point_in_shape(j, A):
-##            print(2)
-##            return False
-##
-
-    count = 0
-    for i in A:
+    
+    if len(A) == len(A_colour) and len(B) == len(B_colour):
+        for i in A:
+           if point_in_shape(i, B):
+                return False
         for j in B:
-            if i.x == j.x and i.y == j.y:
-                count += 1
-    if count <= 1:
-        return 'not union'
-
-    if count >=3:
-##        print(4)
-        return False
-
-##    print_Point(A)
-##    print()
-##    print_Point(B)
-##    print()
-
-    a = None
-
-    i = 0
-    j = 0
-    for i in range(0,len(A)):    
-        if a == None:
-            for j in B:
-                if A[i].x == j.x and A[i].y == j.y:
-  #                  print(A[i].x , A[i].y)
-                    a = i
-  #                  print('a=',a)
-                    break
-            
-    b = None
-
-    i = 0
-    j = 0
-    for i in range(0,len(A)):
-        if b == None:
-            for j in B:
-                if A[i].x == j.x and A[i].y == j.y:
- #                   print('b 可能的值',i,'x,y=',A[i].x,A[i].y,'  ',)
-                    if  i != a:
-                        b = i
-                        if b != a + 1:
-                            a = len(A) - 1
-                            b = 0
- #                       print('b=',b)
- #                       print('a=',a)
-                else:
-                    continue
-                break
-
-    i = 0
-    j = 0
- #   print('BBB=',len(B))
-    for j in range(0,len(B)):
- #       print('j===',j)
-        if B[j].x == A[a].x and B[j].y == A[a].y:
+            if point_in_shape(j, A):
+                return False
          
-            c = j
-            break
-        
-    if B[c-1].x != A[b].x or B[c-1].y != A[b].y:
- #       print(c,c-1)
- #       print(B[c-1].x, B[c-1].y,'  ',A[b].x,A[b].y)
- #       print(3)
+       
+    for i in range(len(A)):
+        if A[i] in B:
+            a = i
+
+    for i in range(len(A)):
+        if A[i] in B and i !=a_start:
+            b = i
+    
+    a_start = min(a,b)
+    a_end = max(a,b)
+    if A[a_end - 1] != A[a_start]:
         return False
+    
+    for j in range(len(j)):
+        if B[j] in A:
+            b = j
 
-    return True
-
-file = open ('shape_D.xml')
-shape = available_coloured_pieces ( file )
-file = open ('tangram_D_a.xml')
-tangram = available_coloured_pieces ( file )
-is_solution ( tangram , shape )
+    for j in range(len(A)):
+        if B[j] in A and j !=a_start:
+            b = j
+    
+    b_start = min(a,b)
+    b_end = max(a,b)
+    if A[a_end - 1] != A[a_start]:
+        return False
+    if b_end == len(B) +1 and b_start == 0 :
+        return B[ :b_start] + A[a_end:] + A[:a_start] + A[a_start]
+    else:
+        
+       return B[b_end+1:] + B[ :b_start] + A[a_end:] + A[:a_start] + A[a_start] 
+           
+piece=available_coloured_pieces(open('tangram_M_e.xml') )

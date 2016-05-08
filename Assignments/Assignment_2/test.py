@@ -269,7 +269,7 @@ def point_in_shape(q,shape_point):
                 flag = not flag
             # when q1.y = q2.y ignore
     if flag == False:
-        print(q.x,q.y)
+        print('错误点',q.x,q.y)
     return flag                  
     
 

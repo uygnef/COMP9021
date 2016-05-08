@@ -1,0 +1,9 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 480 360 L 420 360 L 420 300 z" fill="deeppink"/>
+    <path d="M 240 360 L 300 300 L 300 360 z" fill="orange"/>
+    <path d="M 360 240 L 420 300 L 420 360 L 360 360 z" fill="burlywood"/>
+    <path d="M 360 480 L 300 420 L 360 360 z" fill="navy"/>
+    <path d="M 480 360 L 360 480 L 360 360 z" fill="lime"/>
+    <path d="M 300 420 L 240 360 L 300 360 z" fill="maroon"/>
+    <path d="M 360 240 L 360 360 L 300 420 L 300 300 z" fill="peru"/>
+</svg>

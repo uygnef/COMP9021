@@ -1,0 +1,16 @@
+ <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 150 190   L 200 240   L 250 190           z" fill="dodgerblue"/>  
+    <path d="M 225 265  L 250 290   L 250 240           z" fill="gold"/>
+    <path d="M 250 290  L 300 240   L 250 240           z" fill="fuchsia"/>
+    <path d="M 225 215  L 275 215   L 250 190           z" fill="olive"/>
+    <path d="M 250 190  L 300 240   L 350 190           z" fill="yellowgreen"/>
+    <path d="M 225 115   L 250 140    L 250 90             z" fill="chocolate"/>
+    <path d="M 225 165   L 275 165    L 250 190           z" fill="indigo"/>
+    <path d="M 150 190   L 200 140    L 250 190           z" fill="violet"/>
+    <path d="M 250 90    L 300 140    L 250 140            z" fill="orangered"/>
+    <path d="M 250 190  L 300 140    L 350 190           z" fill="lightsteelblue"/>
+    <path d="M 250 240  L 300 240   L 275 215   L 225 215 z" fill="seagreen"/>
+    <path d="M 250 140   L 300 140    L 275 165    L 225 165   z" fill="aquamarine"/>
+    <path d="M 200 140   L 225 165    L 250 140    L 225 115   z" fill="limegreen"/>
+    <path d="M 200 240  L 225 265   L 250 240   L 225 215 z" fill="salmon"/>
+</svg>

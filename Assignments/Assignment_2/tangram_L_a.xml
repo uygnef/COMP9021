@@ -1,0 +1,9 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 247 325 L 312 260 L 364 260 L 299 325 z" fill="palevioletred"/>
+    <path d="M 273 325 L 377 325 L 338 364 L 273 364 z" fill="darkcyan"/>
+    <path d="M 312 208 L 364 208 L 364 260 L 312 260 z" fill="darkslateblue"/>
+    <path d="M 390 234 L 481 325 L 299 325 z" fill="moccasin"/>
+    <path d="M 377 325 L 455 325 L 455 403 z" fill="lightskyblue"/>
+    <path d="M 273 403 L 273 364 L 338 364 L 299 403 z" fill="greenyellow"/>
+    <path d="M 299 403 L 377 325 L 455 403 z" fill="indigo"/>
+</svg>

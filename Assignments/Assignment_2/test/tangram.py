@@ -83,8 +83,6 @@ def reverse(colour): #slip the piece
         temp = point.x
         point.x = point.y
         point.y = temp
-
-    colour = colour[::-1]
    #     print('x=',point.x,'y=',point.y)
     return colour    
 
@@ -99,18 +97,18 @@ def is_identical(A_colour, B_colour):
         return False
     A_colour = reset_position(A_colour)
     B_colour = reset_position(B_colour)
-   # print('A_colour')
-   # print_Point(A_colour)
-  #  print()
+  #  print('A_colour')
+  #  print_Point(A_colour)
+ #   print()
   #  print('B_colour')
 
     for _ in range(4):
         for i in range(len(A_colour)):
-     #     print(A_colour[i].x,B_colour[i].x)
+      #    print(A_colour[i].x,B_colour[i].x)
           if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
                 B_colour = turn_90(B_colour)
-            #    print('')
-            #    print_Point(B_colour)
+      #          print('')
+       #         print_Point(B_colour)
           else:
                 return True              
 
@@ -119,8 +117,8 @@ def is_identical(A_colour, B_colour):
        for i in range(len(A_colour)):
         if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
             B_colour = turn_90(B_colour)
-        #    print('')
-       #     print_Point(B_colour)
+   #         print('')
+ #           print_Point(B_colour)
         else:
             return True 
 
@@ -135,9 +133,8 @@ def are_identical_sets_of_coloured_pieces(piece_A, piece_B):
                 if A_colour != B_colour:
                     continue
                 else:
-                    if not is_identical(piece_A[A_colour], piece_B[B_colour]):
-                        return False
-    return True
+                    return is_identical(piece_A[A_colour], piece_B[B_colour])
+                return False
     
 def reset_position(piece):
     goal_x = None
@@ -264,39 +261,27 @@ def point_in_shape(q,shape_point):
                     flag = not flag
 
             else:
-                if q.x <= max(p1.x, p2.x):
-                    if q.y == p1.y:
-                        if q.x < p1.x:
-                            flag = not flag
-                    else:
-                        
-
-                        q0 = (p1.x - p2.x) * (q.y - p1.y) / (p1.y - p2.y) + p1.x
-                        if q0 > q.x:
-                            flag = not flag
-
-                        if q0 == q.x:
-                            return True
                 
+                if q.y == p1.y:
+                    judge = (q.y - p2.y) * (q.x -p2.x) - (p2.x - p1.x) * (p2.y - p1.y)
+                else:
+                    judge = (q.y - p1.y) * (q.x -p1.x) - (p2.x - p1.x) * (p2.y - p1.y)
+     
+                  #  print('q=',q.x,q.y)
+                  #  print('P=',p1.x,p1.y,' ',p2.x,p2.y)
+                 #   print('qian=',(p2.x - p1.x) * (p2.y - p1.y))
+                  #  print('({}-{})*({}-{})={}'.format(q.y,p1.y,q.x,p1.x,(q.y - p1.y) * (q.x -p1.x)))
+                   # print('hou=',(p2.x - p1.x) * (p2.y - p1.y))
+                  #  print('({}-{})*({}-{})={}'.format(p2.x,p1.x,p2.y,p1.y,(p2.x - p1.x) * (p2.y - p1.y)))
+                    
+                  #  print(judge)
 
-
-                        
-##         
-##                        print('q=',q.x,q.y)
-##                        print('P=',p1.x,p1.y,' ',p2.x,p2.y)
-##                        print('qian=',(p2.x - p1.x) * (p2.y - p1.y))
-##                        print('({}-{})*({}-{})={}'.format(q.y,p1.y,q.x,p1.x,(q.y - p1.y) * (q.x -p1.x)))
-##                        print('hou=',(p2.x - p1.x) * (p2.y - p1.y))
-##                        print('({}-{})*({}-{})={}'.format(p2.x,p1.x,p2.y,p1.y,(p2.x - p1.x) * (p2.y - p1.y)))
-##                        
-##                        print(judge)
-
-##                    if judge == 0:
-##                        print('点又重合')
-##                        return True
-##                    if judge > 0:
-##                        print('射线相交')
-##                        flag = not flag
+                if judge == 0:
+                  #  print('点又重合')
+                    return True
+                if judge > 0:
+                  #  print('射线相交')
+                    flag = not flag
                 # when q1.y = q2.y ignore
 ##    if flag == False:
 ##        print('错误点',q.x,q.y)
@@ -316,7 +301,6 @@ def collinear(A_colour, B_colour):
             else:
             #    print('有共线')
              #   print_Point([A_colour[i], B_colour[j]])
-             
                 min_a = min(A_colour[i].x, A_colour[i+1].x)
                 max_a = max(A_colour[i].x, A_colour[i+1].x)
                 if min_a < B_colour[j].x < max_a and min_a < B_colour[j+1].x < max_a:
@@ -436,8 +420,22 @@ def union(A_colour, B_colour):
 
     return True
 
-file = open ('shape_D.xml')
+##    
+##
+##    b_start = min(a,b)
+##    b_end = max(a,b)
+##    if A[a_end - 1] != A[a_start]:
+##        return False
+##    
+##    if b_end == len(B) +1 and b_start == 0 :
+##        return B[ :b_start] + A[a_end:] + A[:a_start] + A[a_start]
+##    else:
+##        
+##       return B[b_end+1:] + B[ :b_start] + A[a_end:] + A[:a_start] + A[a_start] 
+           
+file = open ('shape_Z.xml')
 shape = available_coloured_pieces ( file )
-file = open ('tangram_D_a.xml')
+file = open ('tangram_Z.xml')
 tangram = available_coloured_pieces ( file )
-is_solution ( tangram , shape )
+s = is_solution ( tangram , shape )
+print(s)

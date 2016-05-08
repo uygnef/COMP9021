@@ -1,0 +1,10 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 50 200 L 100 150 L 150 150 L 200 200 z" fill="red"/>
+    <path d="M 150 100 L 100 150 L 100 100 z" fill="purple"/>
+    <path d="M 50 200 L 50 150 L 100 150 z" fill="blue"/>
+    <path d="M 200 100 L 150 150 L 100 150 L 150 100 z" fill="yellow"/>
+    <path d="M 100 150 L 50 150 L 50 100 L 100 50 z" fill="olive"/>
+    <path d="M 200 200 L 150 150 L 200 100 z" fill="magenta"/>
+    <path d="M 200 100 L 150 100 L 150 50 z" fill="orange"/>
+    <path d="M 150 50 L 150 100 L 100 100 L 100 50 z" fill="green"/>
+</svg>
