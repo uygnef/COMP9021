@@ -24,8 +24,26 @@ def display_grid():
     print()
 
 def preferred_paths_to_corners():
-    pass
-    # replace pass above with your code (aim for around 21 lines of code)
+    
+    stack = []
+    move = {'SE':[[1,1], [0,1], [1,0]], 'NE':[[-1,1], [0,1], [-1,0]], \
+            'SW':[[1,-1],[0,-1],[1,0]], 'NW':[[-1,-1],[0,-1],[-1,0]]}
+    path = [grid[3][3]]
+    end = True
+    while end:
+        for direction in move[path[t]]:
+            for m in direction:
+                if 0<= i+m[0] <= 6 and 0 <=j+m[1]<= 6: 
+                    path.append(grid[i+m[0]][j+m[1]])
+                    if i+m[0] == 0 and j+m[1] == 0 :
+                        path['(0,0)'] = stack
+        
+                
+        path.append(grid[i+move[path[i]][0][0]][j+move[path[i]][0][1]]
+        
+        
+        
+    
 
 try:
     seed_arg = int(input('Enter an integer: '))
