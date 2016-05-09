@@ -8,7 +8,7 @@
 # At any given point, one prefers to move diagonally, then horizontally,
 # and vertically as a last resort.
 #
-# Written by *** and Eric Martin for COMP9021
+# Written by Yu Feng and Eric Martin for COMP9021
 
 
 import sys
@@ -24,25 +24,35 @@ def display_grid():
     print()
 
 def preferred_paths_to_corners():
-    
-    stack = []
-    move = {'SE':[[1,1], [0,1], [1,0]], 'NE':[[-1,1], [0,1], [-1,0]], \
-            'SW':[[1,-1],[0,-1],[1,0]], 'NW':[[-1,-1],[0,-1],[-1,0]]}
-    path = [grid[3][3]]
-    end = True
-    while end:
-        for direction in move[path[t]]:
-            for m in direction:
-                if 0<= i+m[0] <= 6 and 0 <=j+m[1]<= 6: 
-                    path.append(grid[i+m[0]][j+m[1]])
-                    if i+m[0] == 0 and j+m[1] == 0 :
-                        path['(0,0)'] = stack
-        
+    import copy
+    SE = (1,1),  (0,1), (1,0)
+    NE = (-1,1), (0,1), (-1,0)
+    SW = (1,-1), (0,-1),(1,0)
+    NW = (-1,-1),(0,-1),(-1,0)
+    move = {'SE':SE, 'NE':NE, 'SW':SW, 'NW':NW}
+
+
+    have_been = []
+    init_path = [(3,3)]
+    all_path = [init_path]
+    result = {}
+    for path in all_path:           
+        state = grid[path[-1][0]][path[-1][1]]
+        for m in move[state]:            
+            i = path[-1][0]
+            j = path[-1][1]
+            if 0<= i+m[0] <= 6 and 0 <= j+m[1]<= 6:
+                if (i+m[0], j+m[1]) not in have_been:
+                    new_path = copy.deepcopy(path)
+                    new_path.append((i+m[0], j+m[1]))
                 
-        path.append(grid[i+move[path[i]][0][0]][j+move[path[i]][0][1]]
-        
-        
-        
+                    if (i+m[0], j+m[1]) in corners:
+                        result[(i+m[0], j+m[1])] = new_path
+                    else:
+                        all_path.append(new_path)       
+                        have_been.append((i+m[0], j+m[1]))
+    return result
+          
     
 
 try:
