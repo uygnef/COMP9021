@@ -53,8 +53,7 @@ def preferred_paths_to_corners():
                         all_path.append(new_path)       
                         have_been.append((i+m[0], j+m[1]))
 
-    fin_result = {}
-    
+    fin_result = {}   
     for i in result:
         fin_result[(i[1],i[0])] = []
         for j in result[i]:
