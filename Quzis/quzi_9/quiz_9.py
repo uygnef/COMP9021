@@ -11,34 +11,57 @@ from random import seed, randrange
 from binary_tree import *
 
 # Possibly define some functions
-        
+def size(tree):
+    if tree.height() == 0:
+        a = 1
+    elif tree.left_node.height() > tree.right_node.height() :
+        a = size(tree.left_node)
+    elif tree.left_node.height() < tree.right_node.height() :
+        a = size(tree.right_node)
+    elif tree.left_node.value == None and tree.right_node.value != None:
+        a = size(tree.right_node)
+    elif tree.right_node.value == None and tree.left_node.value != None:
+        a = size(tree.left_node)
+    else:
+        a = size(tree.left_node) + size(tree.right_node)        
+    return a
+    
+   
 def sums_on_longest_branches(tree):
+    
     if tree.height() == 0:
         if tree.value != None:
             a = tree.value
+            b = tree.value
+
         else:
             a = 0
 
-    else:
+    
+    elif tree.value != None:
+        
         if tree.left_node.height() > tree.right_node.height() :
-            print('left',tree.value)
             a = tree.value + sums_on_longest_branches(tree.left_node)[0]
-            b = tree.value + sums_on_longest_branches(tree.left_node)
-
+            b = size(tree) * tree.value + sums_on_longest_branches(tree.left_node)[1]
+   
         elif tree.left_node.height() < tree.right_node.height() :
-            print('right',tree.value)
             a = tree.value + sums_on_longest_branches(tree.right_node)[0]
+            b = size(tree) * tree.value + sums_on_longest_branches(tree.right_node)[1]
 
-        else:
-            print('all',tree.value)
-            a = tree.value + \
-                sums_on_longest_branches(tree.left_node)[0] + \
-                sums_on_longest_branches(tree.right_node)[0]
-
-            b = 2 * tree.value + \
-                sums_on_longest_branches(tree.left_node)[1] + \
-                sums_on_longest_branches(tree.right_node)[1]                
-                
+        elif tree.left_node.value == None and tree.right_node.value != None:
+            a = tree.value + sums_on_longest_branches(tree.right_node)[0]
+            b = size(tree) * tree.value + sums_on_longest_branches(tree.right_node)[1]
+ 
+        elif tree.right_node.value == None and tree.left_node.value != None:
+            a = tree.value + sums_on_longest_branches(tree.left_node)[0]
+            b = size(tree) * tree.value + sums_on_longest_branches(tree.left_node)[1]
+ 
+        else:            
+            a = tree.value + sums_on_longest_branches(tree.left_node)[0] \
+                + sums_on_longest_branches(tree.right_node)[0]
+            b = size(tree) * tree.value + sums_on_longest_branches(tree.left_node)[1] \
+                + sums_on_longest_branches(tree.right_node)[1]
+            
     return (a,b)
                 
 provided_input = input('Enter two integers, the second one being positive: ')
