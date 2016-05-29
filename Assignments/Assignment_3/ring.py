@@ -3,24 +3,37 @@ class Ring:
         self.ring = ring
 
     def __getitem__(self,key):
+        
         try:
-            start = key.start%len(self.ring)
+            if key.start == None:
+                start = 0        
+            else:
+                start = key.start%len(self.ring)
         except AttributeError:
             return (self.ring[key%len(self.ring)])
-        if key.start == None:
-            start = 0
-        if key.stop == None:
-            if key.step < 0 :
-                stop = start + 1
-            elif key.step > 0:
-                stop = start + 1              
+
+        if key.step == None:
+            step = 1
+        else:
+            step = key.step
             
-        stop = key. stop% len(self.ring)
-        if stop < start:
+        if key.stop == None:
+            if step < 0 :
+                stop = start + 1
+            elif step > 0:
+                stop = start - 1
+        else:
+            stop = key.stop
+            
+        stop = stop% len(self.ring) + 1
+        if stop <= start and step > 0:
             goal = self.ring[start:]+self.ring[:stop]
-            print(goal)
-            return(goal[::key.step]+go)
-        return(self.ring[start:stop:key.step]+self.ring[stop])
+            return(goal[::step])
+        if stop >= start and step < 0:
+            goal = self.ring[start::-1] + self.ring[:stop-2:-1]
+            return(goal[::-step])
+
+        return(self.ring[start:stop:step])
 
     def __setitem__(self,key,value):
         key  %= len(self.ring)
