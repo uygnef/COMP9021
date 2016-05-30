@@ -2,8 +2,7 @@ class Ring:
     def __init__(self,ring=[]):
         self.ring = ring
 
-    def __getitem__(self,key):
-        
+    def __getitem__(self,key):   
         try:
             if key.start == None:
                 start = 0        
@@ -14,6 +13,8 @@ class Ring:
 
         if key.step == None:
             step = 1
+        elif key.step == 0:
+            return type(self.ring)()
         else:
             step = key.step
             
@@ -36,8 +37,41 @@ class Ring:
         return(self.ring[start:stop:step])
 
     def __setitem__(self,key,value):
-        key  %= len(self.ring)
-        self.ring[key] = value
+        List = []
+        for i in value:
+            List.append(i)
+        if type(key) is int:
+            key  %= len(self.ring)
+            self.ring[key] = value
+            return
+        start = key.start % len(self.ring)
+        stop = (key.stop + 1) % len(self.ring) 
+        step = key.step
+        if key.step == None:
+            step = 1
+        if step == 0:
+            if stop == 0:
+                self.ring[start:] = List
+                return
+            if start < stop:
+                self.ring[start:stop] = List
+                return
+            print(start,stop)
+            self.ring = List + self.ring[stop:start] # if start > stop
+            return
+
+        if step > 0 :
+            if  start < stop:
+                if (stop - start-1) //step != len(List):
+                    raise ValueError('attempt to insert sequence of size {} to extended slice of size {}'.format(len(List), (stop - start-1) //step))
+        i = start + 1
+        
+        if step == None:
+            step = 1
+        for k in List:
+            self.ring.insert(i,k)
+            i += step + 1            
+        
         
     def __repr__(self):
         output = 'Ring(' + str(self.ring) + ')'
