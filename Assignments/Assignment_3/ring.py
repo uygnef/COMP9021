@@ -67,19 +67,30 @@ class Ring:
             if  start < stop:  ######################might wrong: number of element######## 
                 if (stop - start) //step != len(List): 
                     raise ValueError('attempt to insert sequence of size {} to extended slice of size {}'.format(len(List), (stop - start) //step))
-                i = start   #insert behind start
-                for k in List:
-                    self.ring.insert(i,k)
-                    i += step + 1
             if start >= stop:
                 if math.ceil((len(self.ring) - start + stop) / step) != len(List):
                     print(math.ceil((len(self.ring) - start + stop) / step))
                     raise ValueError('attempt to insert sequence of size {} to extended slice of size {}'.format(len(List), math.ceil((len(self.ring) - start + stop) / step) ))
-                i = start #insert behind start
-                for k in List:
-                     i = i % len(self.ring) #go to beginning
-                     self.ring.insert(i,k)
-                     i += step + 1
+            i = start #insert behind start
+            for k in List:
+                 i = i % len(self.ring) #go to beginning
+                 self.ring.insert(i,k)
+                 i += step + 1
+        if step < 0:
+            step = -step
+            stop -= 1
+            if start < stop:
+                if math.ceil((stop - start +1 ) / step) != len(List):
+                    raise ValueError('attempt to replace sequence of size {} to extended slice of size {}'.format(len(List), math.ceil((stop - start +1 ) / step)))
+            if start >= stop:
+                if math.ceil((len(self.ring) - start + stop +1) / step) != len(List):
+                    raise ValueError('attempt to insert sequence of size {} to extended slice of size {}'.format(len(List), math.ceil((len(self.ring) - start +1 + stop) / step) ))
+            i = start
+            for k in List:
+                i = i % len(self.ring)
+                self.ring[i] = k
+                i += step
+                    
         
         
     def __repr__(self):
