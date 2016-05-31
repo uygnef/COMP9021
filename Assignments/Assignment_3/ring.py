@@ -37,6 +37,7 @@ class Ring:
         return(self.ring[start:stop:step])
 
     def __setitem__(self,key,value):
+        import math
         List = []
         for i in value:
             List.append(i)
@@ -61,16 +62,24 @@ class Ring:
             return
 
         if step > 0 :
-            if  start < stop:
-                if (stop - start-1) //step != len(List):
-                    raise ValueError('attempt to insert sequence of size {} to extended slice of size {}'.format(len(List), (stop - start-1) //step))
-        i = start + 1
-        
-        if step == None:
-            step = 1
-        for k in List:
-            self.ring.insert(i,k)
-            i += step + 1            
+            start += 1
+            print(start,stop)
+            if  start < stop:  ######################might wrong: number of element######## 
+                if (stop - start) //step != len(List): 
+                    raise ValueError('attempt to insert sequence of size {} to extended slice of size {}'.format(len(List), (stop - start) //step))
+                i = start   #insert behind start
+                for k in List:
+                    self.ring.insert(i,k)
+                    i += step + 1
+            if start >= stop:
+                if math.ceil((len(self.ring) - start + stop) / step) != len(List):
+                    print(math.ceil((len(self.ring) - start + stop) / step))
+                    raise ValueError('attempt to insert sequence of size {} to extended slice of size {}'.format(len(List), math.ceil((len(self.ring) - start + stop) / step) ))
+                i = start #insert behind start
+                for k in List:
+                     i = i % len(self.ring) #go to beginning
+                     self.ring.insert(i,k)
+                     i += step + 1
         
         
     def __repr__(self):
