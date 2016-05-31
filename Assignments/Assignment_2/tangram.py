@@ -75,10 +75,9 @@ def are_valid (pieces):
 
 def reverse(colour): #slip the piece
     for point in colour:
-        temp = point.x
-        point.x = point.y
-        point.y = temp
-
+        
+        point.x,point.y = point.y,point.x
+    
     colour = colour[::-1]
     return colour    
 

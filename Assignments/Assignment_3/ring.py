@@ -1,6 +1,8 @@
 class Ring:
     def __init__(self,ring=[]):
         self.ring = ring
+        self.start = 0
+        self.step = 1
 
     def __getitem__(self,key):   
         try:
@@ -90,7 +92,22 @@ class Ring:
                 i = i % len(self.ring)
                 self.ring[i] = k
                 i += step
-                    
+                        
+    def __iter__(self):
+        return self.next()
+
+    def next(self):
+        start = self.start % len(self.ring)
+        yield(self.ring[start])
+        start += self.step
+        start %= len(self.ring)
+        while start != self.start % len(self.ring):
+            yield(self.ring[start])
+            start += self.step
+            start %= len(self.ring)
+            
+
+        
         
         
     def __repr__(self):
