@@ -38,7 +38,7 @@ def solve(pieces,shape):
 			
 			for i in config:
 				result, remain_shape = compare(i,next.shape,random_dir) #result is the solution,remain_shape is the shape after merge
-				if c:
+				if result:
 					next.shape = remain_shape
 					next.solution.append(result)
 					start = next.used.pop()
@@ -54,31 +54,59 @@ def solve(pieces,shape):
 						start.used.append(unused.pop())
 
 def compare(piece, shape,dirn):
-	import * from Ring
+	from ring import *
 	piece = find_corner(piece,dirn)
 	shape = find_corner(shape,dirn)
 	move = (shape[0].x - piece[0].x, shape[0].y - piece[0].y) #move the piece to shape point
 	for i in piece:
 		i.x -= move[0]
 		i.y -= move[1]
-	step = []
+	shape_cut_point = []
+	piece_merge_point = []
+		#judge the line if cross
+	for i in range(len(piece)): # comfirm the line not across
+		a = piece[i]
+		b = piece[i+1]
+		for j in range(len(shape)):
+			c = shape[j]
+			d = shape[j+1]
+			if if_cross(a,b,c,d):
+				return False,False
+	
 	for i in range(len(shape)):
 		if shape[i] == piece[i] and shape[i+1] == piece[i+1]:#这可能有错，因为两个不能直接比
-			记录重合点
 			continue
-		if shape[i],shape[i+1] collinear piece[i],piece[i+1]:
-			判断并记录重合点，并返回【0】点 -1 计算
+		ab = Vector(shape[i], shape[i+1])
+		cd = Vector(piece[i], piece[i+1])
+		if cross_product(ab, cd) == 0:
+			shape_cut_point.append(i+1)
+			piece_merge_point.append(i+1)
 			break
-
-	for i in range(len(shape)):
-		i = -i
-		if shape[i] == piece[i] and shape[i+1] == piece[i+1]:#这可能有错，因为两个不能直接比
-			记录重合点
-			continue
-		if shape[i],shape[i+1] collinear piece[i],piece[i+1]:
-			判断并记录重合点，并返回【0】点 -1 计算
-			break 
 		else:
+			shape_cut_point.append(i)
+			piece_merge_point.append(i)
+			break				
+	for i in range(len(shape)):
+		i = -i 
+		if shape[i] == piece[i] and shape[i-1] == piece[i-1]:#这可能有错，因为两个不能直接比
+			continue
+		ab = Vector(shape[i], shape[i-1])
+		cd = Vector(piece[i], piece[i-1])
+		if cross_product(ab, cd) == 0:
+			shape_cut_point.append(i-1)
+			piece_merge_point.append(i-1)
+			break
+		else:
+			shape_cut_point.append(i)
+			piece_merge_point.append(i)
+			break
+	if piece_merge_point == [0,0] or shape_cut_point == [0,0]:
+		return False,False
+	a = piece[piece_merge_point[0]:piece_merge_point[1]]
+	b = shape[shape_cut_point[0]:shape_cut_point[1]]
+	remain_shape = a[::-1] + b
+	return piece,remain_shape
+	
 			
 		
 			
@@ -91,9 +119,9 @@ def compare(piece, shape,dirn):
 	#piece的线段和shape的线段是否重合，重合部分表示出来。
 	#分为两种情况。1，piece的线段在shape线段上。2，piece线段在shape线段延长线上，并在shape内。
 
-def edge_incomman() 
+
 def find_corner(shape,dirn):
-	import * from ring
+	from ring import *
 	b = None
 	a = shape[0].x
 	for i in shape:
