@@ -1,4 +1,5 @@
 from ring import *
+import turtle
 class Point():
     def __init__(self,point):
         self.x = point[0]
@@ -413,69 +414,83 @@ class pieces_result:
 		self.solution = []
 		self.father = None
 	
-	def inherit(self,List):
-		import copy 
-		self.unused = copy.deepcopy(List.unused)
-		self.unused.pop()
-		self.used = []
-		#self.shape = shape
-		#self.solution = 
-		self.father = List
-		self.shape = List.shape
+def inherit(List):
+	import copy 
+	self = pieces_result()
+	self.unused = copy.deepcopy(List.unused)
+	self.used = copy.deepcopy(List.used)
+	self.used.pop()
+	self.unused = self.unused + self.used
+	self.used = []
+	self.father = List
+	self.shape = List.shape
+	return self
 	
-	def __repr__(self):
-		return ('used=',str(self.used),' unused=',str(self.unused))
 		
 
 def solve(pieces,shape):
 	import copy
 	import random
 	random_dir = random.randint(1,4)
-	start = pieces_result()
-	start.unused = [i for i in pieces] #imput color name in pieces
+	nexts = pieces_result()
+	nexts.unused = [i for i in pieces] #imput color name in pieces
 	for i in shape:
-		start.shape = copy.deepcopy(shape[i])	
-	
+		nexts.shape = copy.deepcopy(shape[i])	
+	solution = []
 	while True:
-		next = pieces_result()
-		next.inherit(start)
-		
-		while next.unused != []:
-
-			a = next.unused.pop()
-			next.used.append(a)
-			config = get_config(pieces[a])
-			#print('1',config)
-			
-			for i in config:
-				mi = i
-				result, remain_shape = compare(mi,next.shape,random_dir) #result is the solution,remain_shape is the shape after merge
-				#print('2',i,next.shape,random_dir)
+		if nexts.father == None and nexts.unused == []:
+			print(nexts.shape,remain_shape)
+			return 
+		if nexts.unused == []:
+			nexts = nexts.father
+			solution.pop()
+			continue
+		using = nexts.unused.pop()
+		nexts.used.append(using)
+		config = get_config(pieces[using])
+		while True:
+			if config != []:
+				using_config = config.pop()
+				result, remain_shape = compare(using_config,nexts.shape,random_dir) #result is the solution,remain_shape is the shape after merge	
 				if result:
-					print('next',next.unused,next.used,next.shape,remain_shape)
-					next.shape = remain_shape
-					next.solution.append(result)
-					start = copy.deepcopy(next)					
-					start.unused = next.unused + next.used
+					nexts.shape = remain_shape
+					solution.append(result)
+					nexts = inherit(nexts)
 					break
-				else:
-					if i == config[-1]:
-						while next.unused == []:
-							next = next.father
-							if next.father == None and next.unused == []:
-								return False
-						start = next
-						start.used.append(unused.pop())
+			else:
+				break
+		draw(remain_shape)
+		#print('remain',remain_shape)
+					
+		
+		
+
+def if_cross1(a, b, c, d): #input Point()
+    ac = Vector(a,c)
+    ad = Vector(a,d)
+    bc = Vector(b,c)
+    bd = Vector(b,d)
+    ca = Vector(c,a)
+    da = Vector(d,a)
+    cb = Vector(c,b)
+    db = Vector(d,b)
+    if a == c or a == d or b == c or b == d:
+        print('==')
+        return False
+    return (cross_product(ac, ad) * cross_product(bc, bd) <= 0) \
+        and (cross_product(ca, cb) * cross_product(da, db) <= 0)
 
 def compare(piece,shape,dirn):
+	import copy
 	#print('-1','compare:',piece,shape)
-	piece = find_corner(piece,dirn)
-	shape = find_corner(shape,dirn)
-	#print('-2','compare:',piece,shape)
+	piece = copy.deepcopy(find_corner(piece,dirn))
+	shape = copy.deepcopy(find_corner(shape,dirn))
+	#print('1','compare:',piece,shape)
 	move = (shape[0].x - piece[0].x, shape[0].y - piece[0].y) #move the piece to shape point
 	for i in piece:
-		i.x -= move[0]
-		i.y -= move[1]
+		i.x += move[0]
+		i.y += move[1]
+		#print(i.x,i.y,'--',move[0],move[1])
 	shape_cut_point = []
 	piece_merge_point = []
 		#judge the line if cross
@@ -485,8 +500,9 @@ def compare(piece,shape,dirn):
 		for j in range(len(shape)):
 			c = shape[j]
 			d = shape[j+1]
-			if if_cross(a,b,c,d):
-				return False,False
+			if if_cross1(a,b,c,d):
+				print('cross')
+				return False,shape
 	
 	for i in range(len(shape)):
 		if shape[i] == piece[i] and shape[i+1] == piece[i+1]:#这可能有错，因为两个不能直接比
@@ -516,11 +532,15 @@ def compare(piece,shape,dirn):
 			piece_merge_point.append(i)
 			break
 	if piece_merge_point == [0,0] or shape_cut_point == [0,0]:
-		return False,False
+		return False,shape
 	a = piece[piece_merge_point[0]:piece_merge_point[1]]
 	b = shape[shape_cut_point[0]:shape_cut_point[1]]
 	remain_shape = a[::-1] + b
-	return piece,remain_shape
+	
+	temp = list(set(remain_shape))
+	temp.sort(key=remain_shape.index)
+	#print('remain_shape(compare)',remain_shape)	
+	return piece,temp
 	
 			
 		
@@ -535,6 +555,13 @@ def compare(piece,shape,dirn):
 	#分为两种情况。1，piece的线段在shape线段上。2，piece线段在shape线段延长线上，并在shape内。
 
 
+def draw(b):
+	turtle.penup()
+	for i in b:
+		turtle.goto(i.x,i.y)
+		turtle.pendown()
+	
+		
 def find_corner(shape,dirn):
 	b = None
 	a = shape[0].x
