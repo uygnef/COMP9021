@@ -17,9 +17,9 @@ class Vector():
         self.length = (self.x**2 + self.y**2)**(1/2)
         
 
-def cross_product(A, B):  #defin the cross product, A,B are vector 
-    return A.x * B.y - B.x * A.y      
-        
+def cross_product(A, B):  #defin the cross product, A,B are vector
+    return A.x * B.y - B.x * A.y
+
 def available_coloured_pieces(file): #transfer the xml documents to the list of points
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(file, "html.parser")
@@ -43,7 +43,7 @@ def solve(pieces, shape):
 
     pieces_list[3] = rest_position(pieces(pieces_list[0].pop()))     #select the first colour in piece_list into using_piece
     shape = [pieces_list[3]]
-   
+
 def product_result(polygon): #get all cross_product in the polygon
     product_result=[]
     for i in range(-2,len(polygon)-2):
@@ -53,7 +53,7 @@ def product_result(polygon): #get all cross_product in the polygon
         r = cross_product(ab,bc)
         product_result.append(r)
     return(product_result)
-    
+
 def if_cross(a, b, c, d): #input Point()
     ac = Vector(a,c)
     ad = Vector(a,d)
@@ -65,8 +65,8 @@ def if_cross(a, b, c, d): #input Point()
     db = Vector(d,b)
     return (cross_product(ac, ad) * cross_product(bc, bd) <= 0) \
         and (cross_product(ca, cb) * cross_product(da, db) <= 0)
-    
-    
+
+
 def are_valid (pieces):
     for colour in pieces:
         result=product_result(pieces[colour])  #use cross product(judge clockwise)
@@ -74,7 +74,7 @@ def are_valid (pieces):
         for i in range(len(result)-1):
             if result[i]*result[i+1] <= 0:
                 return False
-     
+
         for m in range(len(pieces[colour])-1): # comfirm the line not across
             a = pieces[colour][m]
             b = pieces[colour][m+1]
@@ -83,18 +83,18 @@ def are_valid (pieces):
                     c = pieces[colour][n]
                     d = pieces[colour][n+1]
                     if if_cross(a,b,c,d):
-                            return False       
+                            return False
     return True
-            
+
 
 def reverse(c): #slip the piece
     import copy
     colour = copy.deepcopy(c)
-    for point in colour:       
-        point.x,point.y = point.y,point.x 
+    for point in colour:
+        point.x,point.y = point.y,point.x
     colour = colour[::-1]
     colour = reset_position(colour)
-    return colour    
+    return colour
 
 def print_Point(colour):
     for i in colour:
@@ -127,7 +127,7 @@ def get_config(A_colour):
                 B_colour = turn_90(B_colour)
                 break
      return result
-   
+
 def equal(a,b):
     for i in range(len(a)):
             if a[i].x != b[i].x or a[i].y != b[i].y:
@@ -145,7 +145,7 @@ def is_identical(A_colour, B_colour):
           if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
                 B_colour = turn_90(B_colour)
           else:
-                return True              
+                return True
 
     B_colour = reverse(B_colour)
     for _ in range(4):
@@ -153,10 +153,10 @@ def is_identical(A_colour, B_colour):
         if A_colour[i].x != B_colour[i].x or A_colour[i].y != B_colour[i].y:
             B_colour = turn_90(B_colour)
         else:
-            return True 
+            return True
 
     return False
-                           
+
 def are_identical_sets_of_coloured_pieces(piece_A, piece_B):
     if len(piece_A) != len(piece_B):  #the number of pirece must be same
         return False
@@ -169,7 +169,7 @@ def are_identical_sets_of_coloured_pieces(piece_A, piece_B):
                     if not is_identical(piece_A[A_colour], piece_B[B_colour]):
                         return False
     return True
-    
+
 def reset_position(piece):
     goal_x = None
     goal_y = None
@@ -180,7 +180,7 @@ def reset_position(piece):
             goal_y = i.y
         goal_x = min(goal_x,i.x)
         goal_y = min(goal_y,i.y)
-        
+
     for n in piece:
         n.x -= goal_x
         n.y -= goal_y
@@ -194,8 +194,8 @@ def reset_position(piece):
             if piece[k].y > piece[j].y:
                 k = j
     piece = piece[k:] + piece[0:k]
-	
-    return piece          
+
+    return piece
 
 def turn_90(piece):
     new_piece=[]
@@ -206,18 +206,18 @@ def turn_90(piece):
     return new_piece
 
 def area(piece):
-    
+
     total_area = 0
-    
+
     for p in piece:
         colour = piece[p]
         area = 0
         for i in range(-2,len(colour)-2):   #point in the same ploygon
             area += 0.5*cross_product(colour[i], colour[i+1])
         total_area += abs(area)
-    return abs(total_area)           
-                     
-  
+    return abs(total_area)
+
+
 def is_solution(tangram, shape):
     if area(tangram) != area(shape):   #total area is equal
         return False
@@ -233,9 +233,9 @@ def is_solution(tangram, shape):
                         continue
 
 
-    for k in tangram:                # determine if every points is in the shape 
+    for k in tangram:                # determine if every points is in the shape
         if not is_in_shape(tangram[k],shape):
-            return False   
+            return False
     return True
 
 def is_in_shape(piece, shape):
@@ -249,12 +249,12 @@ def is_in_shape(piece, shape):
         return False
     return True
 
-def point_in_shape(q,shape_point):   #judge the single point if in the piece 
+def point_in_shape(q,shape_point):   #judge the single point if in the piece
     flag = False
     for p in range(len(shape_point)):
         p1 = shape_point[p-1]
         p2 = shape_point[p]
-        
+
         if q.x == p1.x and q.y == p1.y:
             return True
 
@@ -264,7 +264,7 @@ def point_in_shape(q,shape_point):   #judge the single point if in the piece
                     return True
                 else:
                     continue
-            
+
         if min(p1.y, p2.y) <= q.y < max(p1.y, p2.y):
 
             if p1.x == p2.x:
@@ -276,27 +276,27 @@ def point_in_shape(q,shape_point):   #judge the single point if in the piece
                     if q.y == p1.y:
                         if q.x < p1.x:
                             flag = not flag
-                    else:               #q0 is the x坐标 point on the line when q0.y = qy                                                                            
+                    else:               #q0 is the x坐标 point on the line when q0.y = qy
                         q0 = (p1.x - p2.x) * (q.y - p1.y) / (p1.y - p2.y) + p1.x
                         if q0 > q.x:
                             flag = not flag
 
                         if q0 == q.x:
                             return True
-    return flag                  
-    
+    return flag
+
 
 def collinear(A_colour, B_colour):
     new_A = []
     for i in range(-1, len(A_colour)-1):
         new_A.append(A_colour[i])
         for j in range(-2, len(B_colour)-2):
-            
+
             #two lines ai-ai+1, bi-bi+1 are collinear
             if cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], B_colour[j+1])) != 0 \
-               or cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], A_colour[i])) != 0: 
+               or cross_product(Vector(A_colour[i], A_colour[i+1]), Vector(B_colour[j], A_colour[i])) != 0:
                 continue
-            else:             
+            else:
                 min_a = min(A_colour[i].x, A_colour[i+1].x)
                 max_a = max(A_colour[i].x, A_colour[i+1].x)
                 if min_a < B_colour[j].x < max_a and min_a < B_colour[j+1].x < max_a:
@@ -305,7 +305,7 @@ def collinear(A_colour, B_colour):
 
                         new_A.append(B_colour[j])
                         new_A.append(B_colour[j+1])
-                        
+
                     else:
 
                         new_A.append(B_colour[j+1])
@@ -317,7 +317,7 @@ def collinear(A_colour, B_colour):
 
                 elif min_a < B_colour[j+1].x < max_a:
                     new_A.append(B_colour[j+1])
-    return new_A 
+    return new_A
 ##
 ##
 def union(A_colour, B_colour):
@@ -326,7 +326,7 @@ def union(A_colour, B_colour):
     if cross_product(Vector(A_colour[0], A_colour[1]), Vector(A_colour[1], A_colour[2])) < 0:
         A_colour = A_colour[::-1]
     if cross_product(Vector(B_colour[0], B_colour[1]), Vector(B_colour[1], B_colour[2])) < 0:
-        B_colour = B_colour[::-1]        
+        B_colour = B_colour[::-1]
     A = copy.deepcopy(collinear(A_colour, B_colour))
     B = copy.deepcopy(collinear(B_colour, A_colour))
 
@@ -346,13 +346,13 @@ def union(A_colour, B_colour):
 
     i = 0
     j = 0
-    for i in range(0,len(A)):    
+    for i in range(0,len(A)):
         if a == None:
             for j in B:
                 if A[i].x == j.x and A[i].y == j.y:
                     a = i
                     break
-            
+
     b = None
 
     i = 0
@@ -373,10 +373,10 @@ def union(A_colour, B_colour):
     i = 0
     j = 0
     for j in range(0,len(B)):
-        if B[j].x == A[a].x and B[j].y == A[a].y:         
+        if B[j].x == A[a].x and B[j].y == A[a].y:
             c = j
             break
-        
+
     if B[c-1].x != A[b].x or B[c-1].y != A[b].y:
         return False
     return True
@@ -391,7 +391,7 @@ def solve(pieces, shape):
         return "Shape is  wrong"
     for i in shape:
         remain_shape = shape[i] #remain shape is a list of shape minus piece
-        
+
     while pieces_list[0] != []: #append colour into piece_list[0], just colour no position
         pieces_list[2] = pieces_list[0].pop()          #initialization of piece_list
         config = get_config(pieces[pieces_list[2]]) #select the piece
@@ -405,7 +405,7 @@ def solve(pieces, shape):
                 remain_shape = a
                 solution[i] = now_config
                 break
-        
+
 class pieces_result:
 	def __init__(self):
 		self.unused = []
@@ -413,9 +413,9 @@ class pieces_result:
 		self.shape = []
 		self.solution = []
 		self.father = None
-	
+
 def inherit(List):
-	import copy 
+	import copy
 	self = pieces_result()
 	self.unused = copy.deepcopy(List.unused)
 	self.used = copy.deepcopy(List.used)
@@ -425,8 +425,8 @@ def inherit(List):
 	self.father = List
 	self.shape = List.shape
 	return self
-	
-		
+
+
 
 def solve(pieces,shape):
 	import copy
@@ -435,12 +435,12 @@ def solve(pieces,shape):
 	nexts = pieces_result()
 	nexts.unused = [i for i in pieces] #imput color name in pieces
 	for i in shape:
-		nexts.shape = copy.deepcopy(shape[i])	
+		nexts.shape = copy.deepcopy(shape[i])
 	solution = []
 	while True:
 		if nexts.father == None and nexts.unused == []:
 			print(nexts.shape,remain_shape)
-			return 
+			return
 		if nexts.unused == []:
 			nexts = nexts.father
 			solution.pop()
@@ -451,7 +451,7 @@ def solve(pieces,shape):
 		while True:
 			if config != []:
 				using_config = config.pop()
-				result, remain_shape = compare(using_config,nexts.shape,random_dir) #result is the solution,remain_shape is the shape after merge	
+				result, remain_shape = compare(using_config,nexts.shape,random_dir) #result is the solution,remain_shape is the shape after merge
 				if result:
 					nexts.shape = remain_shape
 					solution.append(result)
@@ -461,9 +461,9 @@ def solve(pieces,shape):
 				break
 		draw(remain_shape)
 		#print('remain',remain_shape)
-					
-		
-		
+
+
+
 
 def if_cross1(a, b, c, d): #input Point()
     ac = Vector(a,c)
@@ -477,35 +477,34 @@ def if_cross1(a, b, c, d): #input Point()
     if a == c or a == d or b == c or b == d:
         print('==')
         return False
-    return (cross_product(ac, ad) * cross_product(bc, bd) <= 0) \
-        and (cross_product(ca, cb) * cross_product(da, db) <= 0)
+    return (cross_product(ac, ad) * cross_product(bc, bd) < 0) \
+        and (cross_product(ca, cb) * cross_product(da, db) < 0)
+
+
+def is_in_shape1(piece, shape):
+
+    true_list=[]
+    for q in piece:
+        true_list.append(point_in_shape(q,shape))
+
+    if False in true_list:
+        return False
+    return True
 
 def compare(piece,shape,dirn):
 	import copy
-	#print('-1','compare:',piece,shape)
 	piece = copy.deepcopy(find_corner(piece,dirn))
 	shape = copy.deepcopy(find_corner(shape,dirn))
-	#print('1','compare:',piece,shape)
 	move = (shape[0].x - piece[0].x, shape[0].y - piece[0].y) #move the piece to shape point
 	for i in piece:
 		i.x += move[0]
 		i.y += move[1]
-		#print(i.x,i.y,'--',move[0],move[1])
+
 	shape_cut_point = []
 	piece_merge_point = []
-		#judge the line if cross
-	for i in range(len(piece)): # comfirm the line not across
-		a = piece[i]
-		b = piece[i+1]
-		for j in range(len(shape)):
-			c = shape[j]
-			d = shape[j+1]
-			if if_cross1(a,b,c,d):
-				print('cross')
-				return False,shape
-	
+
 	for i in range(len(shape)):
-		if shape[i] == piece[i] and shape[i+1] == piece[i+1]:#这可能有错，因为两个不能直接比
+		if shape[i] == piece[i] and shape[i+1] == piece[i+1]:
 			continue
 		ab = Vector(shape[i], shape[i+1])
 		cd = Vector(piece[i], piece[i+1])
@@ -516,10 +515,11 @@ def compare(piece,shape,dirn):
 		else:
 			shape_cut_point.append(i)
 			piece_merge_point.append(i)
-			break				
+			break
+
 	for i in range(len(shape)):
-		i = -i 
-		if shape[i] == piece[i] and shape[i-1] == piece[i-1]:#这可能有错，因为两个不能直接比
+		i = -i
+		if shape[i] == piece[i] and shape[i-1] == piece[i-1]:
 			continue
 		ab = Vector(shape[i], shape[i-1])
 		cd = Vector(piece[i], piece[i-1])
@@ -533,24 +533,44 @@ def compare(piece,shape,dirn):
 			break
 	if piece_merge_point == [0,0] or shape_cut_point == [0,0]:
 		return False,shape
+
 	a = piece[piece_merge_point[0]:piece_merge_point[1]]
 	b = shape[shape_cut_point[0]:shape_cut_point[1]]
 	remain_shape = a[::-1] + b
-	
+
+
+	# piece1 = Ring(piece)
+	# shape1 = Ring(shape)
+	# if piece_merge_point[1]+1 < len(piece) - piece_merge_point[1]-1\
+	# and shape_cut_point[1]+1 < len(shape) - shape_cut_point[1]-1:
+		# c = piece1[piece_merge_point[1]+1:len(piece)+piece_merge_point[0]-1]
+		# d = shape1[shape_cut_point[1]+1:len(shape)+shape_cut_point[0]-1]
+		# for i in range(-1,len(c)-1):
+			# for j in range(-1,len(d)-1):
+				# if c[i] == d[j] or c[i+1] == d[j+1]:
+					# continue
+				# if if_cross(c[i],c[i+1],d[j],d[j+1]):
+					# print('c,d=',c,d)
+					draw(c)
+					draw(d)
+					# print(c[i],c[i+1],d[j],d[j+1])
+					# print('cross')
+					# return False,shape
+
 	temp = list(set(remain_shape))
 	temp.sort(key=remain_shape.index)
-	#print('remain_shape(compare)',remain_shape)	
+	#print('remain_shape(compare)',remain_shape)
 	return piece,temp
-	
-			
-		
-			
-	
-	
-		
-	
-		
-	
+
+
+
+
+
+
+
+
+
+
 	#piece的线段和shape的线段是否重合，重合部分表示出来。
 	#分为两种情况。1，piece的线段在shape线段上。2，piece线段在shape线段延长线上，并在shape内。
 
@@ -560,8 +580,9 @@ def draw(b):
 	for i in b:
 		turtle.goto(i.x,i.y)
 		turtle.pendown()
-	
-		
+	turtle.reset()
+
+
 def find_corner(shape,dirn):
 	b = None
 	a = shape[0].x
@@ -574,8 +595,8 @@ def find_corner(shape,dirn):
 		if i.x == a:
 			if not b:
 				b = i.y
-			elif dirn ==2 or dirn ==3:	
-				b = min(i.y,b) 
+			elif dirn ==2 or dirn ==3:
+				b = min(i.y,b)
 			else:
 				b = max(i.y,b)
 
@@ -594,7 +615,3 @@ def find_corner(shape,dirn):
 a = available_coloured_pieces(open('pieces_A.xml'))
 s = available_coloured_pieces(open('shape_A_1.xml'))
 solve(a,s)
-	
-				
-			
-				

@@ -1,13 +1,18 @@
 class Ring:
+
     def __init__(self,ring=[]):
+        import re
+        if type(ring) not in [type([]),type(()),type('aa')]:
+                        ss = str(type(ring))
+                        raise TypeError( '’{}’ object is not subscriptable'.format( ss[8:-2]))
         self.ring = ring
         self.start = 0
         self.step = 1
 
-    def __getitem__(self,key):   
+    def __getitem__(self,key):
         try:
             if key.start == None:
-                start = 0        
+                start = 0
             else:
                 start = key.start%len(self.ring)
         except AttributeError:
@@ -19,7 +24,7 @@ class Ring:
             return type(self.ring)()
         else:
             step = key.step
-            
+
         if key.stop == None:
             if step < 0 :
                 stop = start + 1
@@ -27,7 +32,7 @@ class Ring:
                 stop = start - 1
         else:
             stop = key.stop
-            
+
         stop = stop% len(self.ring) + 1
         if stop <= start and step > 0:
             goal = self.ring[start:]+self.ring[:stop]
@@ -48,7 +53,7 @@ class Ring:
             self.ring[key] = value
             return
         start = key.start % len(self.ring)
-        stop = (key.stop + 1) % len(self.ring) 
+        stop = (key.stop + 1) % len(self.ring)
         step = key.step
         if key.step == None:
             step = 1
@@ -66,8 +71,8 @@ class Ring:
         if step > 0 :
             start += 1
             print(start,stop)
-            if  start < stop:  ######################might wrong: number of element######## 
-                if (stop - start) //step != len(List): 
+            if  start < stop:  ######################might wrong: number of element########
+                if (stop - start) //step != len(List):
                     raise ValueError('attempt to insert sequence of size {} to extended slice of size {}'.format(len(List), (stop - start) //step))
             if start >= stop:
                 if math.ceil((len(self.ring) - start + stop) / step) != len(List):
@@ -92,7 +97,7 @@ class Ring:
                 i = i % len(self.ring)
                 self.ring[i] = k
                 i += step
-                        
+
     def __iter__(self):
         return self.next()
 
@@ -105,11 +110,11 @@ class Ring:
             yield(self.ring[start])
             start += self.step
             start %= len(self.ring)
-            
 
-        
-        
-        
+
+
+
+
     def __repr__(self):
         output = 'Ring(' + str(self.ring) + ')'
         return(output)
@@ -119,3 +124,4 @@ class Ring:
 
     def __len__(self):
         return(len(self.ring))
+
