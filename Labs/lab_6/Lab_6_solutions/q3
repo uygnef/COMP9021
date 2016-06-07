@@ -1,0 +1,7 @@
+letter = input('input:')
+stact_list = []
+while i in range(len(letter)):
+    if stact_list == []:
+        stact_list.append([letter[i]])
+        for j in letter[i:]:
+            if ord(i) ==
