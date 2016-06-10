@@ -240,6 +240,7 @@ if __name__ == '__main__':
     LL.print()
     print(LL.is_sorted(lambda x, y: x <= y))
     LL.extend(LL_copy)
+    print('LL--------')
     LL.print()
     LL.reverse()
     LL.print()
