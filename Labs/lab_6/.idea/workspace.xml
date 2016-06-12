@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b429c73-af28-4fc6-9b60-5a6733e38110" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Lab_9_solutions/my_Q2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lab_7_solutions/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Lab_7_solutions/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lab_8_solutions/doubly_linked_list.py" afterPath="$PROJECT_DIR$/../Lab_8_solutions/doubly_linked_list.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lab_6.iws" />
@@ -19,10 +16,16 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/lab_6$question_1.coverage" NAME="question_1 Coverage Results" MODIFIED="1465215627528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/lab_6$q3.coverage" NAME="q3 Coverage Results" MODIFIED="1465436434816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/lab_6$question_1.coverage" NAME="question_1 Coverage Results" MODIFIED="1465710523638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_11_solutions" />
     <SUITE FILE_PATH="coverage/lab_6$exercise_2.coverage" NAME="exercise_2 Coverage Results" MODIFIED="1465542122275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_9_solutions" />
+    <SUITE FILE_PATH="coverage/lab_6$general_tree.coverage" NAME="general_tree Coverage Results" MODIFIED="1465635732311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_10_solutions" />
+    <SUITE FILE_PATH="coverage/lab_6$binary_tree.coverage" NAME="binary_tree Coverage Results" MODIFIED="1465546775761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_10_solutions" />
+    <SUITE FILE_PATH="coverage/lab_6$my_q1.coverage" NAME="my_q1 Coverage Results" MODIFIED="1465638785085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_10_solutions" />
     <SUITE FILE_PATH="coverage/lab_6$doubly_linked_list.coverage" NAME="doubly_linked_list Coverage Results" MODIFIED="1465445856502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_8_solutions" />
+    <SUITE FILE_PATH="coverage/lab_6$priority_queue.coverage" NAME="priority_queue Coverage Results" MODIFIED="1465724735425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_11_solutions" />
+    <SUITE FILE_PATH="coverage/lab_6$exercise_1.coverage" NAME="exercise_1 Coverage Results" MODIFIED="1465551420985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_10_solutions" />
+    <SUITE FILE_PATH="coverage/lab_6$est.coverage" NAME="est Coverage Results" MODIFIED="1465563861761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_10_solutions" />
     <SUITE FILE_PATH="coverage/lab_6$question_2__1_.coverage" NAME="question_2 (1) Coverage Results" MODIFIED="1465438978874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_7_solutions" />
     <SUITE FILE_PATH="coverage/lab_6$my_Q2.coverage" NAME="my_Q2 Coverage Results" MODIFIED="1465542468497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Lab_9_solutions" />
     <SUITE FILE_PATH="coverage/lab_6$question_2.coverage" NAME="question_2 Coverage Results" MODIFIED="1465436452241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab_6_solutions/Lab_6_solutions" />
@@ -35,38 +38,7 @@
     <favorites_list name="lab_6" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="exercise_2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lab_9_solutions/exercise_2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1147">
-              <caret line="89" column="83" selection-start-line="89" selection-start-column="83" selection-end-line="89" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="my_Q2.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../Lab_9_solutions/my_Q2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="859">
-              <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="array_stack.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lab_9_solutions/array_stack.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -89,6 +61,11 @@
         <option value="$PROJECT_DIR$/../Lab_8_solutions/doubly_linked_list.py" />
         <option value="$PROJECT_DIR$/../Lab_9_solutions/exercise_2.py" />
         <option value="$PROJECT_DIR$/../Lab_9_solutions/my_Q2.py" />
+        <option value="$PROJECT_DIR$/../Lab_10_solutions/est.py" />
+        <option value="$PROJECT_DIR$/../Lab_10_solutions/binary_tree.py" />
+        <option value="$PROJECT_DIR$/../Lab_10_solutions/general_tree.py" />
+        <option value="$PROJECT_DIR$/../Lab_10_solutions/my_q1.py" />
+        <option value="$PROJECT_DIR$/../Lab_11_solutions/priority_queue.py" />
       </list>
     </option>
   </component>
@@ -99,10 +76,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
-    <option name="y" value="7" />
-    <option name="width" value="2634" />
-    <option name="height" value="1828" />
+    <option name="x" value="-13" />
+    <option name="y" value="-13" />
+    <option name="width" value="2638" />
+    <option name="height" value="1850" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -111,11 +88,11 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -128,101 +105,114 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lab_6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lab_7_solutions/q2.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../exam" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Python.my_Q2">
-    <configuration default="false" name="question_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.priority_queue">
+    <configuration default="false" name="general_tree" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab_6_solutions/Lab_6_solutions" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="lab_6" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lab_6_solutions/Lab_6_solutions/question_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="question_2 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_7_solutions" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_10_solutions" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="lab_6" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_7_solutions/question_2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_10_solutions/general_tree.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="doubly_linked_list" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="est" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_8_solutions" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_10_solutions" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="lab_6" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_8_solutions/doubly_linked_list.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_10_solutions/est.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="exercise_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="my_q1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_9_solutions" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_10_solutions" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="lab_6" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_9_solutions/exercise_2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_10_solutions/my_q1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="my_Q2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="priority_queue" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_9_solutions" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_11_solutions" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="lab_6" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_9_solutions/my_Q2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_11_solutions/priority_queue.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="question_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Lab_11_solutions" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="lab_6" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Lab_11_solutions/question_1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -436,19 +426,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.question_2" />
-      <item index="1" class="java.lang.String" itemvalue="Python.question_2 (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Python.doubly_linked_list" />
-      <item index="3" class="java.lang.String" itemvalue="Python.exercise_2" />
-      <item index="4" class="java.lang.String" itemvalue="Python.my_Q2" />
+      <item index="0" class="java.lang.String" itemvalue="Python.general_tree" />
+      <item index="1" class="java.lang.String" itemvalue="Python.est" />
+      <item index="2" class="java.lang.String" itemvalue="Python.my_q1" />
+      <item index="3" class="java.lang.String" itemvalue="Python.priority_queue" />
+      <item index="4" class="java.lang.String" itemvalue="Python.question_1" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.my_Q2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.exercise_2" />
-        <item index="2" class="java.lang.String" itemvalue="Python.doubly_linked_list" />
-        <item index="3" class="java.lang.String" itemvalue="Python.question_2 (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.question_2" />
+        <item index="0" class="java.lang.String" itemvalue="Python.priority_queue" />
+        <item index="1" class="java.lang.String" itemvalue="Python.question_1" />
+        <item index="2" class="java.lang.String" itemvalue="Python.my_q1" />
+        <item index="3" class="java.lang.String" itemvalue="Python.general_tree" />
+        <item index="4" class="java.lang.String" itemvalue="Python.est" />
       </list>
     </recent_temporary>
   </component>
@@ -478,28 +468,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="7" width="2634" height="1828" extended-state="0" />
-    <editor active="true" />
+    <frame x="-13" y="-13" width="2638" height="1850" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25773585" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25727412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982224" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982224" sideWeight="0.5015094" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917213" sideWeight="0.49849057" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902032" sideWeight="0.49849057" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33826247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981132" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917213" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38262478" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3337386" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291639" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38262478" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -575,6 +565,31 @@
           <line>45</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/../Lab_10_solutions/est.py</url>
+          <line>3</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/../Lab_10_solutions/general_tree.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/../Lab_10_solutions/general_tree.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/../Lab_11_solutions/priority_queue.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/../Lab_11_solutions/priority_queue.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -583,16 +598,44 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/exercise_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/binary_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3072">
+          <caret line="64" column="66" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/general_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/array_stack.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../Lab_7_solutions/question_3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3120">
           <caret line="65" column="23" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -600,7 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -608,7 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3120">
           <caret line="65" column="23" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -616,7 +657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -734,7 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3120">
           <caret line="65" column="23" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -742,7 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1483">
           <caret line="202" column="8" selection-start-line="202" selection-start-column="8" selection-end-line="202" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -750,23 +788,92 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lab_9_solutions/exercise_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1147">
-          <caret line="89" column="83" selection-start-line="89" selection-start-column="83" selection-end-line="89" selection-end-column="83" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Lab_9_solutions/my_Q2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="859">
-          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+          <caret line="50" column="36" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_9_solutions/exercise_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/exercise_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/exercise_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-336">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/est.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+          <folding>
+            <marker date="1465563856641" expanded="true" signature="64:346" ph="..." />
+            <marker date="1465563856641" expanded="true" signature="122:346" ph="..." />
+            <marker date="1465563856641" expanded="true" signature="211:346" ph="..." />
+            <marker date="1465563856641" expanded="true" signature="278:346" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/my_q1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_11_solutions/question_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-816">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_11_solutions/priority_queue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2182">
+          <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/binary_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4992">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/general_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab_10_solutions/array_stack.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>

@@ -17,23 +17,17 @@
 def can_merge(string_1, string_2, string_3):
     print(string_1,string_2,string_3)
     if not string_1 and string_2 == string_3:
-        print('2',string_1)
         return True
     if not string_2 and string_1 == string_3:
-        print('1',string_2,type(string_2))
         return True
     if not string_1 or not string_2:
-        print('1,2',string_1,string_2)
         return False
     if string_1[0] == string_3[0]:
-        print(string_1[0])
         a = can_merge(string_1[1: ], string_2, string_3[1: ])
         b = False
         if not a:
             if string_2[0] == string_3[1]:
-                print('b,equal',string_2[0])
                 b = can_merge(string_1, string_2[1: ], string_3[2: ])
-        print('a,b=',a,b)
         return a or b
     return False
 
